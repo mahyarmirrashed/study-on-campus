@@ -27,3 +27,6 @@ src/lib/paraglide
 
 # Tool versioning
 .tool-versions
+
+# i18n
+project.inlang
