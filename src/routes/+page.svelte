@@ -1,11 +1,9 @@
 <script lang="ts">
-  import { Button } from "$lib/components/ui/button";
+  import { MapLibre } from "svelte-maplibre";
 </script>
 
-<h1>Welcome to SvelteKit</h1>
-<p>
-  Visit <a href="https://svelte.dev/docs/kit">svelte.dev/docs/kit</a> to read the
-  documentation
-</p>
-
-<Button>Click me</Button>
+<MapLibre
+  style="https://basemaps.cartocdn.com/gl/positron-gl-style/style.json"
+  class="relative aspect-[9/16] max-h-[70vh] w-full sm:aspect-video sm:max-h-full"
+  standardControls
+/>
