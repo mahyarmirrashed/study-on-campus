@@ -14,6 +14,9 @@ importers:
       mode-watcher:
         specifier: ^0.5.0
         version: 0.5.0(svelte@5.4.0)
+      runed:
+        specifier: ^0.16.1
+        version: 0.16.1(svelte@5.4.0)
       svelte-maplibre:
         specifier: 1.0.0-next.7
         version: 1.0.0-next.7(svelte@5.4.0)
@@ -1854,6 +1857,11 @@ packages:
 
   run-parallel@1.2.0:
     resolution: {integrity: sha512-5l4VyZR86LZ/lDxZTR6jqL8AFE2S0IFLMP26AbjsLVADxHdhB/c0GUsH+y39UfCi3dzz8OlQuPmnaJOMoDHQBA==}
+
+  runed@0.16.1:
+    resolution: {integrity: sha512-k9ylt7sfEQiqOo2FmuilkLSk92pDzMSeVHFb8aPJGFPQPG9ErUxhfcHQwnmUhT03F8oQeO6bKB/TDoPKhdXbTA==}
+    peerDependencies:
+      svelte: ^5.0.0-next.1
 
   rusha@0.8.14:
     resolution: {integrity: sha512-cLgakCUf6PedEu15t8kbsjnwIFFR2D4RfL+W3iWFJ4iac7z4B0ZI8fxy4R3J956kAI68HclCFGL8MPoUVC3qVA==}
@@ -3878,6 +3886,11 @@ snapshots:
   run-parallel@1.2.0:
     dependencies:
       queue-microtask: 1.2.3
+
+  runed@0.16.1(svelte@5.4.0):
+    dependencies:
+      esm-env: 1.2.1
+      svelte: 5.4.0
 
   rusha@0.8.14: {}
 
