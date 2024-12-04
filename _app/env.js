@@ -1,1 +1,1 @@
-export const env={}
+export const env={"PUBLIC_MAPTILER_KEY":"LYsosKTbN7Q5Pq1NzJI1"}
