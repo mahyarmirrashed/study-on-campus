@@ -15,7 +15,7 @@
 </script>
 
 <Button
-  class="absolute top-4 right-4 z-10"
+  class="absolute top-2.5 right-2.5 z-10"
   on:click={toggleMode}
   variant="outline"
   size="icon"
