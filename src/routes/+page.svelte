@@ -4,7 +4,7 @@
 
   import { Sun, Moon } from "lucide-svelte/icons";
   import { toggleMode, mode } from "mode-watcher";
-  import { MapLibre, FillExtrusionLayer } from "svelte-maplibre";
+  import { MapLibre } from "svelte-maplibre";
 
   const maptilerTopoLightStyle = `https://api.maptiler.com/maps/topo-v2/style.json?key=${PUBLIC_MAPTILER_KEY}`;
   const maptilerTopoDarkStyle = `https://api.maptiler.com/maps/topo-v2-dark/style.json?key=${PUBLIC_MAPTILER_KEY}`;
@@ -28,10 +28,4 @@
   />
   <span class="sr-only">Toggle theme</span>
 </Button>
-<MapLibre style={maptilerStyle} class="min-h-screen" standardControls>
-  <FillExtrusionLayer
-    source="maptiler_planet"
-    sourceLayer="building"
-    paint={{}}
-  />
-</MapLibre>
+<MapLibre style={maptilerStyle} class="min-h-screen" standardControls />
