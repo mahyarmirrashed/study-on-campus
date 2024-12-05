@@ -7,15 +7,18 @@ export type SpaceAmenities =
   | "WiFi";
 
 export type SpaceHoursSegment = { open: string; close: string };
+export type SpaceStatus = "Open" | "Closed" | "Opening Soon" | "Closing Soon";
+export type Weekdays =
+  | "monday"
+  | "tuesday"
+  | "wednesday"
+  | "thursday"
+  | "friday"
+  | "saturday"
+  | "sunday";
 
 export type SpaceHours = {
-  monday: SpaceHoursSegment[];
-  tuesday: SpaceHoursSegment[];
-  wednesday: SpaceHoursSegment[];
-  thursday: SpaceHoursSegment[];
-  friday: SpaceHoursSegment[];
-  saturday: SpaceHoursSegment[];
-  sunday: SpaceHoursSegment[];
+  [W in Weekdays]: SpaceHoursSegment[];
 };
 
 export type Space = {
