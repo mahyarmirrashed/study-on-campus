@@ -41,10 +41,9 @@
   $effect(() => {
     if (campusSelected) {
       const displayOptions = campusSelected.metadata?.display;
-      map.flyTo({
         center: [campusSelected.location.lng, campusSelected.location.lat],
+      map.jumpTo({
         zoom: displayOptions?.zoom ?? 16,
-        duration: 3000,
         pitch: displayOptions?.pitch ?? 60,
         bearing: displayOptions?.bearing ?? 0,
       });
