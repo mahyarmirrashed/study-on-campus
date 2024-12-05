@@ -16,7 +16,7 @@
 
 <Button
   class="absolute top-2.5 right-2.5 z-10"
-  on:click={toggleMode}
+  onclick={toggleMode}
   variant="outline"
   size="icon"
 >
