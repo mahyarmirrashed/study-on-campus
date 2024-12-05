@@ -23,9 +23,11 @@ export type Space = {
   label: string;
   description: string;
   location: { lat: number; lng: number };
-  hours: SpaceHours;
   metadata?: {
     amentities?: SpaceAmenities[];
     link?: string;
   };
-};
+} & (
+  | { alwaysOpen: true; hours?: never }
+  | { alwaysOpen?: false; hours: SpaceHours }
+);
