@@ -6,7 +6,7 @@ export const campuses: Campus[] = [
   {
     value: "university-of-manitoba",
     label: "University of Manitoba",
-    location: { lat: 49.808, lng: -97.134 },
+    location: { lat: 49.808, lng: -97.133 },
     spaces: universityOfManitobaLocations,
   },
   {
