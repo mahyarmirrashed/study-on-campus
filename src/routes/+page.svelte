@@ -59,7 +59,11 @@
 <MapLibre bind:map style={maptilerStyle} class="min-h-screen" standardControls>
   {#if campusSelected}
     {#each campusSelected.spaces as space}
-      <Marker lngLat={space.location}>
+      <Marker
+        lngLat={space.location}
+        class="cursor-pointer"
+        onclick={() => (campusInfoDrawerOpen = true)}
+      >
         <span>{space.label}</span>
       </Marker>
     {/each}
