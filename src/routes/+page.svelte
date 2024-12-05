@@ -2,6 +2,7 @@
   import { PUBLIC_MAPTILER_KEY } from "$env/static/public";
   import { Button } from "$lib/components/ui/button/index.js";
   import * as Command from "$lib/components/ui/command/index.js";
+  import * as Drawer from "$lib/components/ui/drawer/index.js";
   import * as Popover from "$lib/components/ui/popover/index.js";
   import { cn } from "$lib/utils.js";
   import maplibregl from "maplibre-gl";
@@ -20,6 +21,7 @@
     campuses.find((campus) => campus.value === campusValue),
   );
 
+  let map = $state<maplibregl.Map>(null!);
   const maptilerTopoLightStyle = `https://api.maptiler.com/maps/topo-v2/style.json?key=${PUBLIC_MAPTILER_KEY}`;
   const maptilerTopoDarkStyle = `https://api.maptiler.com/maps/topo-v2-dark/style.json?key=${PUBLIC_MAPTILER_KEY}`;
 
@@ -27,7 +29,7 @@
     $mode === "dark" ? maptilerTopoDarkStyle : maptilerTopoLightStyle,
   );
 
-  let map = $state<maplibregl.Map>(null!);
+  let campusInfoDrawerOpen = $state(false);
 
   function closeAndFocusComboboxTrigger() {
     campusComboboxOpen = false;
@@ -121,3 +123,17 @@
   />
   <span class="sr-only">Toggle theme</span>
 </Button>
+
+<Drawer.Root bind:open={campusInfoDrawerOpen}>
+  <Drawer.Content>
+    <div class="mx-auto w-full max-w-sm">
+      <Drawer.Header>
+        <Drawer.Title>Move Goal</Drawer.Title>
+        <Drawer.Description>Set your daily activity goal.</Drawer.Description>
+      </Drawer.Header>
+      <div class="p-4 pb-0">
+        <span>Test</span>
+      </div>
+    </div>
+  </Drawer.Content>
+</Drawer.Root>
