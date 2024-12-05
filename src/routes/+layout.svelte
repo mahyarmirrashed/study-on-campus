@@ -3,6 +3,7 @@
   import { ParaglideJS } from "@inlang/paraglide-sveltekit";
   import { ModeWatcher } from "mode-watcher";
   import "../app.css";
+  import "../maplibre.css";
   let { children } = $props();
 </script>
 

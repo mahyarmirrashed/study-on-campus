@@ -1,0 +1,22 @@
+.dark .maplibregl-ctrl-scale,
+.dark .maplibregl-ctrl-attrib.maplibregl-compact,
+.dark .maplibregl-ctrl-attrib a {
+  color: hsl(var(--foreground));
+}
+
+.dark .maplibregl-ctrl-group,
+.dark .maplibregl-ctrl-scale,
+.dark .maplibregl-ctrl-attrib.maplibregl-compact {
+  background: hsl(var(--background));
+}
+
+.dark .maplibregl-ctrl-group button + button,
+.dark .maplibregl-ctrl-scale,
+.dark .maplibregl-ctrl-attrib.maplibregl-compact {
+  border-color: hsl(var(--border));
+}
+
+.dark .maplibregl-ctrl-icon,
+.dark .maplibregl-ctrl-attrib-button {
+  filter: invert(0.75);
+}
