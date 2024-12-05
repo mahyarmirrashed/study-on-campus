@@ -12,7 +12,7 @@
   import { tick } from "svelte";
   import { MapLibre } from "svelte-maplibre";
 
-  import { campuses } from "./campuses";
+  import { campuses } from "$src/data/campuses";
 
   let campusComboboxOpen = $state(false);
   let campusComboboxTriggerRef = $state<HTMLButtonElement>(null!);
