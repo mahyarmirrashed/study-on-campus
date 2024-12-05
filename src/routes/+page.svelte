@@ -1,6 +1,7 @@
 <script lang="ts">
   import { PUBLIC_MAPTILER_KEY } from "$env/static/public";
   import { Button } from "$lib/components/ui/button/index.js";
+  import * as Accordion from "$lib/components/ui/accordion/index.js";
   import * as Command from "$lib/components/ui/command/index.js";
   import * as Drawer from "$lib/components/ui/drawer/index.js";
   import * as Popover from "$lib/components/ui/popover/index.js";
@@ -134,7 +135,14 @@
         <Drawer.Description>Set your daily activity goal.</Drawer.Description>
       </Drawer.Header>
       <div class="p-4 pb-0">
-        <span>Test</span>
+        <Accordion.Root type="single">
+          <Accordion.Item value="item-1">
+            <Accordion.Trigger>Is it accessible?</Accordion.Trigger>
+            <Accordion.Content>
+              Yes. It adheres to the WAI-ARIA design pattern.
+            </Accordion.Content>
+          </Accordion.Item>
+        </Accordion.Root>
       </div>
     </div>
   </Drawer.Content>
