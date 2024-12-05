@@ -9,6 +9,7 @@
   import { Check, ChevronsUpDown, Sun, Moon } from "lucide-svelte/icons";
   import maplibregl from "maplibre-gl";
   import { toggleMode, mode } from "mode-watcher";
+  import { PersistedState } from "runed";
   import { tick } from "svelte";
   import { MapLibre, Marker } from "svelte-maplibre";
 
@@ -17,9 +18,9 @@
 
   let campusComboboxOpen = $state(false);
   let campusComboboxTriggerRef = $state<HTMLButtonElement>(null!);
-  let campusValue = $state("");
+  const campusValue = new PersistedState("count", "");
   const campusSelected = $derived(
-    campuses.find((campus) => campus.value === campusValue),
+    campuses.find((campus) => campus.value === campusValue.current),
   );
 
   let map = $state<maplibregl.Map>(null!);
@@ -101,14 +102,14 @@
               <Command.Item
                 value={campus.value}
                 onSelect={() => {
-                  campusValue = campus.value;
+                  campusValue.current = campus.value;
                   closeAndFocusComboboxTrigger();
                 }}
               >
                 <Check
                   class={cn(
                     "ml-auto",
-                    campusValue !== campus.value && "text-transparent",
+                    campusValue.current !== campus.value && "text-transparent",
                   )}
                 />
                 {campus.label}
