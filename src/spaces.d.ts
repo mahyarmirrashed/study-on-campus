@@ -25,6 +25,7 @@ export type Space = {
   location: { lat: number; lng: number };
   hours: SpaceHours;
   metadata?: {
-    amentities: SpaceAmenities[];
+    amentities?: SpaceAmenities[];
+    link?: string;
   };
 };
