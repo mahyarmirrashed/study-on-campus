@@ -14,6 +14,8 @@
   );
 </script>
 
+<MapLibre style={maptilerStyle} class="min-h-screen" standardControls />
+
 <Button
   class="absolute top-2.5 right-2.5 z-10"
   onclick={toggleMode}
@@ -28,4 +30,3 @@
   />
   <span class="sr-only">Toggle theme</span>
 </Button>
-<MapLibre style={maptilerStyle} class="min-h-screen" standardControls />
