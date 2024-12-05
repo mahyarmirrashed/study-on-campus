@@ -1,4 +1,10 @@
-export const campuses = [
+export type Campus = {
+  value: string;
+  label: string;
+  location: { lat: number; lng: number };
+};
+
+export const campuses: Campus[] = [
   {
     value: "university-of-manitoba",
     label: "University of Manitoba",
