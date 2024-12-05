@@ -12,11 +12,11 @@
 
   import { campuses } from "./campuses";
 
-  let open = $state(false);
-  let value = $state("");
-  let triggerRef = $state<HTMLButtonElement>(null!);
-  const selectedCampus = $derived(
-    campuses.find((f) => f.value === value)?.label,
+  let campusComboboxOpen = $state(false);
+  let campusComboboxTriggerRef = $state<HTMLButtonElement>(null!);
+  let campusValue = $state("");
+  const campusSelected = $derived(
+    campuses.find((campus) => campus.value === campusValue)?.label,
   );
 
   const maptilerTopoLightStyle = `https://api.maptiler.com/maps/topo-v2/style.json?key=${PUBLIC_MAPTILER_KEY}`;
@@ -27,9 +27,9 @@
   );
 
   function closeAndFocusTrigger() {
-    open = false;
+    campusComboboxOpen = false;
     tick().then(() => {
-      triggerRef.focus();
+      campusComboboxTriggerRef.focus();
     });
   }
 </script>
@@ -37,17 +37,17 @@
 <MapLibre style={maptilerStyle} class="min-h-screen" standardControls />
 
 <div class="z-10 absolute top-2.5 left-1/2 -translate-x-1/2">
-  <Popover.Root bind:open>
-    <Popover.Trigger bind:ref={triggerRef}>
+  <Popover.Root bind:open={campusComboboxOpen}>
+    <Popover.Trigger bind:ref={campusComboboxTriggerRef}>
       {#snippet child({ props })}
         <Button
           variant="outline"
           class="w-[200px] justify-between"
           {...props}
           role="combobox"
-          aria-expanded={open}
+          aria-expanded={campusComboboxOpen}
         >
-          {selectedCampus || "Select a campus..."}
+          {campusSelected || "Select a campus..."}
           <ChevronsUpDown class="opacity-50" />
         </Button>
       {/snippet}
@@ -62,14 +62,14 @@
               <Command.Item
                 value={campus.value}
                 onSelect={() => {
-                  value = campus.value;
+                  campusValue = campus.value;
                   closeAndFocusTrigger();
                 }}
               >
                 <Check
                   class={cn(
                     "ml-auto",
-                    value !== campus.value && "text-transparent",
+                    campusValue !== campus.value && "text-transparent",
                   )}
                 />
                 {campus.label}
