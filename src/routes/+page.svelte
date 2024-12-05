@@ -41,8 +41,8 @@
   $effect(() => {
     if (campusSelected) {
       const displayOptions = campusSelected.metadata?.display;
-        center: [campusSelected.location.lng, campusSelected.location.lat],
       map.jumpTo({
+        center: campusSelected.location,
         zoom: displayOptions?.zoom ?? 16,
         pitch: displayOptions?.pitch ?? 60,
         bearing: displayOptions?.bearing ?? 0,
