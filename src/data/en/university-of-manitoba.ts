@@ -27,15 +27,7 @@ export const locations: Space[] = [
     description:
       "The Donald W. Craik Engineering Library serves engineeirng resources, including books, journals, and electronic databases, to support academic and research needs of students and faculty.",
     location: { lat: 49.80835859585458, lng: -97.13445434076718 },
-    hours: {
-      monday: [{ open: "00:00", close: "23:59" }],
-      tuesday: [{ open: "00:00", close: "23:59" }],
-      wednesday: [{ open: "00:00", close: "23:59" }],
-      thursday: [{ open: "00:00", close: "23:59" }],
-      friday: [{ open: "00:00", close: "23:59" }],
-      saturday: [{ open: "00:00", close: "23:59" }],
-      sunday: [{ open: "00:00", close: "23:59" }],
-    },
+    alwaysOpen: true,
     metadata: {
       amentities: ["WiFi"],
     },
