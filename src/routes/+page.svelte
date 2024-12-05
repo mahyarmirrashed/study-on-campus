@@ -4,6 +4,7 @@
   import * as Command from "$lib/components/ui/command/index.js";
   import * as Popover from "$lib/components/ui/popover/index.js";
   import { cn } from "$lib/utils.js";
+  import maplibregl from "maplibre-gl";
 
   import { Check, ChevronsUpDown, Sun, Moon } from "lucide-svelte/icons";
   import { toggleMode, mode } from "mode-watcher";
@@ -16,7 +17,7 @@
   let campusComboboxTriggerRef = $state<HTMLButtonElement>(null!);
   let campusValue = $state("");
   const campusSelected = $derived(
-    campuses.find((campus) => campus.value === campusValue)?.label,
+    campuses.find((campus) => campus.value === campusValue),
   );
 
   const maptilerTopoLightStyle = `https://api.maptiler.com/maps/topo-v2/style.json?key=${PUBLIC_MAPTILER_KEY}`;
@@ -26,15 +27,35 @@
     $mode === "dark" ? maptilerTopoDarkStyle : maptilerTopoLightStyle,
   );
 
+  let map = $state<maplibregl.Map>(null!);
+
   function closeAndFocusTrigger() {
     campusComboboxOpen = false;
     tick().then(() => {
       campusComboboxTriggerRef.focus();
     });
   }
+
+  $effect(() => {
+    if (campusSelected) {
+      const displayOptions = campusSelected.metadata?.display;
+      map.flyTo({
+        center: [campusSelected.location.lng, campusSelected.location.lat],
+        zoom: displayOptions?.zoom ?? 16,
+        duration: 3000,
+        pitch: displayOptions?.pitch ?? 60,
+        bearing: displayOptions?.bearing ?? 0,
+      });
+    }
+  });
 </script>
 
-<MapLibre style={maptilerStyle} class="min-h-screen" standardControls />
+<MapLibre
+  bind:map
+  style={maptilerStyle}
+  class="min-h-screen"
+  standardControls
+/>
 
 <div class="z-10 absolute top-2.5 left-1/2 -translate-x-1/2">
   <Popover.Root bind:open={campusComboboxOpen}>
@@ -47,7 +68,7 @@
           role="combobox"
           aria-expanded={campusComboboxOpen}
         >
-          {campusSelected || "Select a campus..."}
+          {campusSelected?.label || "Select a campus..."}
           <ChevronsUpDown class="opacity-50" />
         </Button>
       {/snippet}
