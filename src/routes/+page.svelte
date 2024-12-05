@@ -5,9 +5,9 @@
   import * as Drawer from "$lib/components/ui/drawer/index.js";
   import * as Popover from "$lib/components/ui/popover/index.js";
   import { cn } from "$lib/utils.js";
-  import maplibregl from "maplibre-gl";
 
   import { Check, ChevronsUpDown, Sun, Moon } from "lucide-svelte/icons";
+  import maplibregl from "maplibre-gl";
   import { toggleMode, mode } from "mode-watcher";
   import { tick } from "svelte";
   import { MapLibre, Marker } from "svelte-maplibre";
