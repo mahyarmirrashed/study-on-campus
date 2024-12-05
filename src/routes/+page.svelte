@@ -67,7 +67,7 @@
       {#snippet child({ props })}
         <Button
           variant="outline"
-          class="w-48 justify-between"
+          class="w-52 justify-between"
           {...props}
           role="combobox"
           aria-expanded={campusComboboxOpen}
@@ -77,7 +77,7 @@
         </Button>
       {/snippet}
     </Popover.Trigger>
-    <Popover.Content class="w-48 p-0">
+    <Popover.Content class="w-52 p-0">
       <Command.Root>
         <Command.Input placeholder="Search framework..." />
         <Command.List>
