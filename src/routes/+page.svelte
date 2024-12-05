@@ -10,7 +10,7 @@
   import { Check, ChevronsUpDown, Sun, Moon } from "lucide-svelte/icons";
   import { toggleMode, mode } from "mode-watcher";
   import { tick } from "svelte";
-  import { MapLibre } from "svelte-maplibre";
+  import { MapLibre, Marker } from "svelte-maplibre";
 
   import { campuses } from "$src/data/campuses";
 
@@ -55,12 +55,15 @@
   <title>Campus Study Spots</title>
 </svelte:head>
 
-<MapLibre
-  bind:map
-  style={maptilerStyle}
-  class="min-h-screen"
-  standardControls
-/>
+<MapLibre bind:map style={maptilerStyle} class="min-h-screen" standardControls>
+  {#if campusSelected}
+    {#each campusSelected.spaces as space}
+      <Marker lngLat={space.location}>
+        <span>{space.label}</span>
+      </Marker>
+    {/each}
+  {/if}
+</MapLibre>
 
 <div class="z-10 absolute top-2.5 left-1/2 -translate-x-1/2">
   <Popover.Root bind:open={campusComboboxOpen}>
