@@ -50,6 +50,10 @@
   });
 </script>
 
+<svelte:head>
+  <title>Campus Study Spots</title>
+</svelte:head>
+
 <MapLibre
   bind:map
   style={maptilerStyle}
