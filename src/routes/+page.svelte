@@ -29,7 +29,7 @@
 
   let map = $state<maplibregl.Map>(null!);
 
-  function closeAndFocusTrigger() {
+  function closeAndFocusComboboxTrigger() {
     campusComboboxOpen = false;
     tick().then(() => {
       campusComboboxTriggerRef.focus();
@@ -88,7 +88,7 @@
                 value={campus.value}
                 onSelect={() => {
                   campusValue = campus.value;
-                  closeAndFocusTrigger();
+                  closeAndFocusComboboxTrigger();
                 }}
               >
                 <Check
