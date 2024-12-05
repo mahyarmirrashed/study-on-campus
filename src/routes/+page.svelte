@@ -88,7 +88,7 @@
     </Popover.Trigger>
     <Popover.Content class="w-52 p-0">
       <Command.Root>
-        <Command.Input placeholder="Search framework..." />
+        <Command.Input placeholder="Search campuses..." />
         <Command.List>
           <Command.Empty>No campus found.</Command.Empty>
           <Command.Group>
