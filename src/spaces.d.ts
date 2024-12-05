@@ -1,4 +1,10 @@
-export type SpaceAmenities = "WiFi" | "Outlets" | "Fountains";
+export type SpaceAmenities =
+  | "Computers"
+  | "Outlets"
+  | "Printing"
+  | "Rooms"
+  | "Water Fountains"
+  | "WiFi";
 
 export type SpaceHoursSegment = { open: string; close: string };
 
