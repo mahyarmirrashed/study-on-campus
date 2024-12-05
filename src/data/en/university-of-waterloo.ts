@@ -1,6 +1,6 @@
-import { type Location } from "$src/data/locations";
+import { type Space } from "$src/spaces";
 
-export const locations: Location[] = [
+export const locations: Space[] = [
   {
     value: "dana-porter-library",
     label: "Dana Porter Library",
