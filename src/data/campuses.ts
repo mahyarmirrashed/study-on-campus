@@ -1,4 +1,4 @@
-import { type Campus } from "$src/campuses";
+import { type Campus } from "$src/campuses.d";
 import { locations as universityOfManitobaLocations } from "./en/university-of-manitoba";
 import { locations as universityOfWaterlooLocations } from "./en/university-of-waterloo";
 

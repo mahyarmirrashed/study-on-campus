@@ -1,4 +1,4 @@
-import type { Space } from "./spaces";
+import type { Space } from "$src/spaces.d";
 
 export type Campus = {
   value: string;

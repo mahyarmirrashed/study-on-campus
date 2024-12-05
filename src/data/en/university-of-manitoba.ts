@@ -1,4 +1,4 @@
-import { type Space } from "$src/spaces";
+import { type Space } from "$src/spaces.d";
 
 export const locations: Space[] = [
   {
