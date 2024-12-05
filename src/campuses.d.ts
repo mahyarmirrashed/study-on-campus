@@ -11,5 +11,6 @@ export type Campus = {
       pitch?: number;
       bearing?: number;
     };
+    timezone?: string;
   };
 };
