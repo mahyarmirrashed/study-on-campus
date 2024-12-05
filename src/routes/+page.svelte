@@ -1,7 +1,6 @@
 <script lang="ts">
   import { PUBLIC_MAPTILER_KEY } from "$env/static/public";
   import { Button } from "$lib/components/ui/button/index.js";
-  import * as Accordion from "$lib/components/ui/accordion/index.js";
   import * as Command from "$lib/components/ui/command/index.js";
   import * as Drawer from "$lib/components/ui/drawer/index.js";
   import * as Popover from "$lib/components/ui/popover/index.js";
@@ -14,6 +13,7 @@
   import { MapLibre, Marker } from "svelte-maplibre";
 
   import { campuses } from "$src/data/campuses";
+  import { type Space } from "$src/spaces";
 
   let campusComboboxOpen = $state(false);
   let campusComboboxTriggerRef = $state<HTMLButtonElement>(null!);
@@ -30,8 +30,13 @@
     $mode === "dark" ? maptilerTopoDarkStyle : maptilerTopoLightStyle,
   );
 
-  let campusInfoDrawerOpen = $state(false);
+  let spaceInfoDrawerOpen = $state(false);
+  let spaceSelected = $state<Space>(null!);
 
+  function openSpaceInfoDrawer(space: Space) {
+    spaceInfoDrawerOpen = true;
+    spaceSelected = space;
+  }
   function closeAndFocusComboboxTrigger() {
     campusComboboxOpen = false;
     tick().then(() => {
@@ -62,7 +67,7 @@
       <Marker
         lngLat={space.location}
         class="cursor-pointer"
-        onclick={() => (campusInfoDrawerOpen = true)}
+        onclick={() => openSpaceInfoDrawer(space)}
       >
         <span>{space.label}</span>
       </Marker>
@@ -131,23 +136,13 @@
   <span class="sr-only">Toggle theme</span>
 </Button>
 
-<Drawer.Root bind:open={campusInfoDrawerOpen}>
+<Drawer.Root bind:open={spaceInfoDrawerOpen}>
   <Drawer.Content>
-    <div class="mx-auto w-full max-w-sm">
+    <div class="mx-auto w-full max-w-md">
       <Drawer.Header>
-        <Drawer.Title>Move Goal</Drawer.Title>
-        <Drawer.Description>Set your daily activity goal.</Drawer.Description>
+        <Drawer.Title>{spaceSelected.label}</Drawer.Title>
+        <Drawer.Description>{spaceSelected.description}</Drawer.Description>
       </Drawer.Header>
-      <div class="p-4 pb-0">
-        <Accordion.Root type="single">
-          <Accordion.Item value="item-1">
-            <Accordion.Trigger>Is it accessible?</Accordion.Trigger>
-            <Accordion.Content>
-              Yes. It adheres to the WAI-ARIA design pattern.
-            </Accordion.Content>
-          </Accordion.Item>
-        </Accordion.Root>
-      </div>
     </div>
   </Drawer.Content>
 </Drawer.Root>
