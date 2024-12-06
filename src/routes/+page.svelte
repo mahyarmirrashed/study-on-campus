@@ -35,6 +35,7 @@
 
   let spaceInfoDrawerOpen = $state(false);
   let spaceSelected = $state<Space>(null!);
+  const spaceSelectedStatus = $derived(getSpaceStatus(spaceSelected));
 
   function openSpaceInfoDrawer(space: Space) {
     spaceInfoDrawerOpen = true;
@@ -46,6 +47,13 @@
       campusComboboxTriggerRef.focus();
     });
   }
+
+  const spaceStatusBadgeClasses: Record<SpaceStatus, string> = {
+    Open: "bg-green-400 hover:bg-green-500",
+    Closed: "bg-red-400 hover:bg-red-500",
+    "Opening Soon": "bg-yellow-400 hover:bg-yellow-500",
+    "Closing Soon": "bg-yellow-400 hover:bg-yellow-500",
+  };
 
   $effect(() => {
     if (campusSelected) {
@@ -145,12 +153,13 @@
       <Drawer.Header>
         <Drawer.Title>{spaceSelected.label}</Drawer.Title>
         <Drawer.Description>
-          <Badge variant="destructive">
-            {#if spaceSelected.alwaysOpen}
-              Open
-            {:else}
-              {getSpaceStatus(spaceSelected.hours)}
-            {/if}
+          <Badge
+            class={cn(
+              spaceStatusBadgeClasses[spaceSelectedStatus],
+              "border-transparent",
+            )}
+          >
+            {spaceSelectedStatus}
           </Badge>
         </Drawer.Description>
       </Drawer.Header>
