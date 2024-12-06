@@ -1,4 +1,4 @@
-import type { SpaceHours, SpaceStatus, Weekdays } from "$src/spaces";
+import type { Space, SpaceStatus, Weekdays } from "$src/spaces";
 import { type ClassValue, clsx } from "clsx";
 import { twMerge } from "tailwind-merge";
 
@@ -14,10 +14,12 @@ function timeStringToMinutes(time: string): number {
 }
 
 export function getSpaceStatus(
-  hours: SpaceHours,
+  space: Space,
   timezone?: string,
   currentTime = new Date(),
 ): SpaceStatus {
+  if (space.alwaysOpen) return "Open";
+
   const options: Intl.DateTimeFormatOptions = {
     weekday: "long",
     hour: "2-digit",
@@ -48,7 +50,7 @@ export function getSpaceStatus(
 
   const current = timeStringToMinutes(`${hour}:${minute}`);
 
-  for (const period of hours[weekday] || []) {
+  for (const period of space.hours[weekday] || []) {
     const open = timeStringToMinutes(period.open);
     const close = timeStringToMinutes(period.close);
 
