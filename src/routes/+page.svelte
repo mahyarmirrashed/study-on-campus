@@ -196,7 +196,7 @@
       {#if spaceSelected.metadata?.amenities}
         <ul class="mb-3">
           <h2 class="font-semibold mb-1">Included Amenities</h2>
-          {#each spaceSelected.metadata?.amenities as amenity}
+          {#each spaceSelected.metadata?.amenities.slice().sort() as amenity}
             <li class="flex gap-x-1 ps-1">
               <AmenityIcon {amenity} />
               <span>{amenity}</span>
