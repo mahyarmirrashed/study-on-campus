@@ -178,7 +178,7 @@
 {#if spaceSelected}
   <Drawer.Root bind:open={spaceInfoDrawerOpen}>
     <Drawer.Content>
-      <div class="mx-auto w-full max-w-md pb-6 px-4">
+      <div class="mx-auto w-full max-w-md pb-6 px-4 md:px-0">
         <Drawer.Header>
           <Drawer.Title>{spaceSelected.label}</Drawer.Title>
           <Drawer.Description>
