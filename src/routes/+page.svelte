@@ -73,9 +73,9 @@
     Closed:
       "bg-red-400 shadow-red-400 group-hover:bg-red-500 group-hover:shadow-red-500",
     "Opening Soon":
-      "from-yellow-400 shadow-yellow-400 group-hover:bg-yellow-500 group-hover:shadow-yellow-500",
+      "bg-yellow-400 shadow-yellow-400 group-hover:bg-yellow-500 group-hover:shadow-yellow-500",
     "Closing Soon":
-      "from-yellow-400 shadow-yellow-400 group-hover:bg-yellow-500 group-hover:shadow-yellow-500",
+      "bg-yellow-400 shadow-yellow-400 group-hover:bg-yellow-500 group-hover:shadow-yellow-500",
   };
 
   $effect(() => {
