@@ -179,10 +179,11 @@
       </Drawer.Header>
       {#if spaceSelected?.metadata?.amenities}
         <ul class="mb-3">
+          <h2 class="font-semibold mb-1">Included Amenities</h2>
           {#each spaceSelected?.metadata?.amenities as amenity}
-            <li class="flex">
+            <li class="flex gap-x-1 ps-1">
               <AmenityIcon {amenity} />
-              <span class="ml-1">{amenity}</span>
+              <span>{amenity}</span>
             </li>
           {/each}
         </ul>
