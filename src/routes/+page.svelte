@@ -177,6 +177,9 @@
           </Badge>
         </Drawer.Description>
       </Drawer.Header>
+      <p class="mb-3">
+        {spaceSelected?.description}
+      </p>
       {#if spaceSelected?.metadata?.amenities}
         <ul class="mb-3">
           <h2 class="font-semibold mb-1">Included Amenities</h2>
