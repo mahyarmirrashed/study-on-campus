@@ -15,7 +15,7 @@ export const locations: Space[] = [
       sunday: [{ open: "11:00", close: "23:00" }],
     },
     metadata: {
-      amentities: ["WiFi"],
+      amenities: ["WiFi"],
     },
   },
 ];

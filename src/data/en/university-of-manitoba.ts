@@ -15,7 +15,7 @@ export const locations: Space[] = [
       sunday: [],
     },
     metadata: {
-      amentities: ["WiFi", "Computers", "Printing"],
+      amenities: ["WiFi", "Computers", "Printing"],
       link: "https://maps.app.goo.gl/CFbxpALxC7HpwdBx8",
     },
   },
@@ -25,7 +25,7 @@ export const locations: Space[] = [
     location: { lat: 49.80835859585458, lng: -97.13445434076718 },
     alwaysOpen: true,
     metadata: {
-      amentities: ["WiFi"],
+      amenities: ["WiFi"],
     },
   },
   {
@@ -42,7 +42,7 @@ export const locations: Space[] = [
       sunday: [{ open: "10:00", close: "18:00" }],
     },
     metadata: {
-      amentities: ["WiFi", "Computers", "Printing"],
+      amenities: ["WiFi", "Computers", "Printing"],
       link: "https://maps.app.goo.gl/NzVn21YBon12p11e8",
     },
   },
@@ -60,7 +60,7 @@ export const locations: Space[] = [
       sunday: [],
     },
     metadata: {
-      amentities: ["WiFi", "Printing"],
+      amenities: ["WiFi", "Printing"],
       link: "https://maps.app.goo.gl/BkewBe4p6jjSWEgb7",
     },
   },
@@ -78,7 +78,7 @@ export const locations: Space[] = [
       sunday: [{ open: "10:00", close: "18:00" }],
     },
     metadata: {
-      amentities: ["WiFi", "Rooms", "Computers", "Printing"],
+      amenities: ["WiFi", "Rooms", "Computers", "Printing"],
       link: "https://maps.app.goo.gl/pq5cGKjbKwuJFan86",
     },
   },
@@ -96,7 +96,7 @@ export const locations: Space[] = [
       sunday: [],
     },
     metadata: {
-      amentities: ["WiFi", "Printing"],
+      amenities: ["WiFi", "Printing"],
       link: "https://maps.app.goo.gl/JGQEwkeyEtG1cDCbA",
     },
   },
@@ -114,7 +114,7 @@ export const locations: Space[] = [
       sunday: [],
     },
     metadata: {
-      amentities: ["WiFi", "Rooms", "Computers", "Printing"],
+      amenities: ["WiFi", "Rooms", "Computers", "Printing"],
       link: "https://maps.app.goo.gl/48NVXVD6kGeSoEue9",
     },
   },
