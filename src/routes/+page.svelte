@@ -15,7 +15,7 @@
   import { MapLibre, Marker } from "svelte-maplibre";
 
   import { campuses } from "$src/data/campuses";
-  import { type Space } from "$src/spaces";
+  import type { Space, SpaceStatus } from "$src/spaces";
   import { getSpaceStatus } from "$lib/utils";
 
   let campusComboboxOpen = $state(false);
@@ -54,6 +54,12 @@
     "Opening Soon": "bg-yellow-400 hover:bg-yellow-500",
     "Closing Soon": "bg-yellow-400 hover:bg-yellow-500",
   };
+  const spaceStatusMarkerClass: Record<SpaceStatus, string> = {
+    Open: "bg-green-400 hover:bg-green-500 shadow-green-400/50",
+    Closed: "bg-red-400 hover:bg-red-500 shadow-red-400/50",
+    "Opening Soon": "bg-yellow-400 hover:bg-yellow-500 shadow-yellow-400/50",
+    "Closing Soon": "bg-yellow-400 hover:bg-yellow-500 shadow-yellow-400/50",
+  };
 
   $effect(() => {
     if (campusSelected) {
@@ -80,7 +86,14 @@
         class="cursor-pointer"
         onclick={() => openSpaceInfoDrawer(space)}
       >
-        <span>{space.label}</span>
+        <div
+          class={cn(
+            spaceStatusMarkerClass[getSpaceStatus(space)],
+            "w-4 h-4 rounded-full",
+          )}
+        >
+          &nbsp;
+        </div>
       </Marker>
     {/each}
   {/if}
