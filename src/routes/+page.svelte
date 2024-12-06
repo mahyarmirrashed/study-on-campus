@@ -70,10 +70,13 @@
     "Closing Soon": "bg-yellow-400 hover:bg-yellow-500",
   };
   const spaceStatusMarkerClass: Record<SpaceStatus, string> = {
-    Open: "bg-green-400 hover:bg-green-500 shadow-green-400/50",
-    Closed: "bg-red-400 hover:bg-red-500 shadow-red-400/50",
-    "Opening Soon": "bg-yellow-400 hover:bg-yellow-500 shadow-yellow-400/50",
-    "Closing Soon": "bg-yellow-400 hover:bg-yellow-500 shadow-yellow-400/50",
+    Open: "bg-green-400 shadow-green-400 group-hover:bg-green-500 group-hover:shadow-green-500",
+    Closed:
+      "bg-red-400 shadow-red-400 group-hover:bg-red-500 group-hover:shadow-red-500",
+    "Opening Soon":
+      "from-yellow-400 shadow-yellow-400 group-hover:bg-yellow-500 group-hover:shadow-yellow-500",
+    "Closing Soon":
+      "from-yellow-400 shadow-yellow-400 group-hover:bg-yellow-500 group-hover:shadow-yellow-500",
   };
 
   $effect(() => {
@@ -101,11 +104,13 @@
         class="cursor-pointer"
         onclick={() => openSpaceInfoDrawer(space)}
       >
-        <div class="cursor-pointer w-16 h-16 flex items-center justify-center">
+        <div
+          class="cursor-pointer w-16 h-16 flex items-center justify-center group"
+        >
           <div
             class={cn(
               spaceStatusMarkerClass[getSpaceStatus(space)],
-              "w-4 h-4 rounded-full",
+              "w-2 h-2 rounded-full shadow-3xl",
             )}
           >
             &nbsp;

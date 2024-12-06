@@ -78,6 +78,9 @@ const config: Config = {
       animation: {
         "caret-blink": "caret-blink 1.25s ease-out infinite",
       },
+      boxShadow: {
+        "3xl": "0 0 10px 10px rgba(0, 0, 0, 0.4)",
+      },
     },
   },
   plugins: [tailwindcssAnimate],
