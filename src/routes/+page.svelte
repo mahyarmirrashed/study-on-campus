@@ -21,8 +21,12 @@
   import maplibregl from "maplibre-gl";
   import { toggleMode, mode } from "mode-watcher";
   import { PersistedState } from "runed";
-  import { tick } from "svelte";
+  import { tick, onDestroy } from "svelte";
   import { MapLibre, Marker } from "svelte-maplibre";
+
+  let currentTime = $state<Date>(new Date());
+  const intervalId = setInterval(() => (currentTime = new Date()), 60 * 1000);
+  onDestroy(() => clearInterval(intervalId));
 
   let campusComboboxOpen = $state(false);
   let campusComboboxTriggerRef = $state<HTMLButtonElement>(null!);
@@ -41,7 +45,13 @@
 
   let spaceInfoDrawerOpen = $state(false);
   let spaceSelected = $state<Space | undefined>(undefined);
-  const spaceSelectedStatus = $derived(getSpaceStatus(spaceSelected));
+  const spaceSelectedStatus = $derived(
+    getSpaceStatus(
+      spaceSelected,
+      campusSelected?.metadata?.timezone,
+      currentTime,
+    ),
+  );
 
   function openSpaceInfoDrawer(space: Space) {
     spaceInfoDrawerOpen = true;
@@ -108,7 +118,13 @@
         >
           <div
             class={cn(
-              spaceStatusMarkerClass[getSpaceStatus(space)],
+              spaceStatusMarkerClass[
+                getSpaceStatus(
+                  space,
+                  campusSelected.metadata?.timezone,
+                  currentTime,
+                )
+              ],
               "h-2 w-2 rounded-full shadow-3xl",
             )}
           >
