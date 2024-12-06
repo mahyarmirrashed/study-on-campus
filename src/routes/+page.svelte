@@ -177,16 +177,16 @@
           </Badge>
         </Drawer.Description>
       </Drawer.Header>
-      <ul>
-        {#if spaceSelected?.metadata?.amenities}
+      {#if spaceSelected?.metadata?.amenities}
+        <ul class="mb-3">
           {#each spaceSelected?.metadata?.amenities as amenity}
             <li class="flex">
               <AmenityIcon {amenity} />
               <span class="ml-1">{amenity}</span>
             </li>
           {/each}
-        {/if}
-      </ul>
+        </ul>
+      {/if}
     </div>
   </Drawer.Content>
 </Drawer.Root>
