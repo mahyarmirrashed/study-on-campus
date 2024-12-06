@@ -3,6 +3,7 @@
   import AmenityIcon from "$lib/components/custom/amenity-icon.svelte";
   import { Badge } from "$lib/components/ui/badge/index.js";
   import { Button } from "$lib/components/ui/button/index.js";
+  import * as Card from "$lib/components/ui/card/index.js";
   import * as Command from "$lib/components/ui/command/index.js";
   import * as Drawer from "$lib/components/ui/drawer/index.js";
   import * as Popover from "$lib/components/ui/popover/index.js";
@@ -181,6 +182,43 @@
   />
   <span class="sr-only">Toggle theme</span>
 </Button>
+
+<Card.Root class="z-10 absolute bottom-10 left-2.5">
+  <Card.Header>
+    <Card.Title>Legend</Card.Title>
+    <Card.Description
+      >Colors indicate open status of the spaces.</Card.Description
+    >
+  </Card.Header>
+  <Card.Content>
+    <div class="flex flex-col gap-y-2">
+      <Badge
+        class={cn(
+          spaceStatusBadgeClasses["Open"],
+          "border-transparent mr-auto",
+        )}
+      >
+        Open
+      </Badge>
+      <Badge
+        class={cn(
+          spaceStatusBadgeClasses["Opening Soon"],
+          "border-transparent mr-auto",
+        )}
+      >
+        Opening Soon/Closing Soon
+      </Badge>
+      <Badge
+        class={cn(
+          spaceStatusBadgeClasses["Closed"],
+          "border-transparent mr-auto",
+        )}
+      >
+        Closed
+      </Badge>
+    </div>
+  </Card.Content>
+</Card.Root>
 
 {#if spaceSelected}
   <Drawer.Root bind:open={spaceInfoDrawerOpen}>
