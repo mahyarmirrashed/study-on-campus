@@ -33,6 +33,13 @@ functionality of the application:
   notifications about their opening or closing times, enhancing the utility of
   the platform.
 
+## Screenshots
+
+<div style="display:flex; width:100%; height:200px; align-items:stretch; gap:10px;" >
+  <img src="./static/desktop.png" alt="Desktop view." style="height:100%; width:auto;" />
+  <img src="./static/mobile.png" alt="Mobile view." style="height:100%; width:auto;" />
+</div>
+
 [^1]:
     Favicon resourced from
     [Freepik - Flaticon](https://www.flaticon.com/free-icons/study)
