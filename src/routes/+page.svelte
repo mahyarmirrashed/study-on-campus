@@ -7,8 +7,10 @@
   import * as Command from "$lib/components/ui/command/index.js";
   import * as Drawer from "$lib/components/ui/drawer/index.js";
   import * as Popover from "$lib/components/ui/popover/index.js";
+  import { getSpaceStatus } from "$lib/utils";
   import { cn } from "$lib/utils.js";
-
+  import { campuses } from "$src/data/campuses";
+  import type { Space, SpaceStatus } from "$src/spaces";
   import {
     Check,
     ChevronsUpDown,
@@ -21,10 +23,6 @@
   import { PersistedState } from "runed";
   import { tick } from "svelte";
   import { MapLibre, Marker } from "svelte-maplibre";
-
-  import { campuses } from "$src/data/campuses";
-  import type { Space, SpaceStatus } from "$src/spaces";
-  import { getSpaceStatus } from "$lib/utils";
 
   let campusComboboxOpen = $state(false);
   let campusComboboxTriggerRef = $state<HTMLButtonElement>(null!);
