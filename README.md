@@ -35,10 +35,7 @@ functionality of the application:
 
 ## Screenshots
 
-<div style="display:flex; width:100%; height:200px; align-items:stretch; gap:10px;" >
-  <img src="./static/desktop.png" alt="Desktop view." style="height:100%; width:auto;" />
-  <img src="./static/mobile.png" alt="Mobile view." style="height:100%; width:auto;" />
-</div>
+![](./static/desktop.png "Desktop View")
 
 [^1]:
     Favicon resourced from
