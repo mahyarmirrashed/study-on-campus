@@ -57,7 +57,7 @@ export const locations: Space[] = [
     label: "Eckhardt Gramatté Music Library",
     description:
       "The Eckhardt Gramatté Music Library supports study, research, and performance at the University of Manitoba. As a unit of the University of Manitoba Libraries, the Music Library provides a vast range of print, recorded and electronic resources to students, faculty and staff of the University as well as members of the public.",
-    location: { lat: 49.808042975950016, lng: -97.1321825540353 },
+    location: { lat: 49.80784297695002, lng: -97.1321825540353 },
     hours: {
       monday: [{ open: "08:30", close: "16:30" }],
       tuesday: [{ open: "08:30", close: "16:30" }],
@@ -117,7 +117,7 @@ export const locations: Space[] = [
     label: "Jim Peebles Science and Technology Library",
     description:
       "The Jim Peebles Science and Technology Library serves the research, study, and teaching requirements of the Faculties of Science, Engineering, Agricultural and Food Sciences, and Environment, Earth, and Resources.",
-    location: { lat: 49.81151151579056, lng: -97.13336330797407 },
+    location: { lat: 49.81121151579056, lng: -97.13336330797407 },
     hours: {
       monday: [],
       tuesday: [],
