@@ -24,6 +24,7 @@ export type SpaceHours = {
 export type Space = {
   value: string;
   label: string;
+  description: string;
   location: { lat: number; lng: number };
   metadata?: {
     amenities?: SpaceAmenities[];

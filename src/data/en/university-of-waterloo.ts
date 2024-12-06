@@ -4,6 +4,8 @@ export const locations: Space[] = [
   {
     value: "dana-porter-library",
     label: "Dana Porter Library",
+    description:
+      "Built in 1965, the Dana Porter Library is home to a large collection of books focused on the Arts, Humanities and Social Sciences.",
     location: { lat: 43.46990996120006, lng: -80.54232110658808 },
     hours: {
       monday: [{ open: "08:00", close: "23:00" }],
