@@ -149,7 +149,7 @@
 
 <Drawer.Root bind:open={spaceInfoDrawerOpen}>
   <Drawer.Content>
-    <div class="mx-auto w-full max-w-md">
+    <div class="mx-auto w-full max-w-md pb-4">
       <Drawer.Header>
         <Drawer.Title>{spaceSelected.label}</Drawer.Title>
         <Drawer.Description>
