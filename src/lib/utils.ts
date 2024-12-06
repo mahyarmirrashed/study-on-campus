@@ -14,11 +14,12 @@ function timeStringToMinutes(time: string): number {
 }
 
 export function getSpaceStatus(
-  space: Space,
+  space?: Space,
   timezone?: string,
   currentTime = new Date(),
 ): SpaceStatus {
-  if (space.alwaysOpen) return "Open";
+  if (space === undefined) return "Closed";
+  else if (space.alwaysOpen) return "Open";
 
   const options: Intl.DateTimeFormatOptions = {
     weekday: "long",

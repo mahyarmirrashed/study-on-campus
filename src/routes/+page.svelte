@@ -41,7 +41,7 @@
   );
 
   let spaceInfoDrawerOpen = $state(false);
-  let spaceSelected = $state<Space>(null!);
+  let spaceSelected = $state<Space | undefined>(undefined);
   const spaceSelectedStatus = $derived(getSpaceStatus(spaceSelected));
 
   function openSpaceInfoDrawer(space: Space) {
@@ -55,7 +55,8 @@
     });
   }
 
-  function spaceGoogleMapLink(space: Space) {
+  function spaceGoogleMapLink(space?: Space) {
+    if (space === undefined) return "";
     return (
       space.metadata?.link ??
       `https://www.google.com/maps?q=${space.location.lat},${space.location.lng}`
@@ -174,71 +175,73 @@
   <span class="sr-only">Toggle theme</span>
 </Button>
 
-<Drawer.Root bind:open={spaceInfoDrawerOpen}>
-  <Drawer.Content>
-    <div class="mx-auto w-full max-w-md pb-8">
-      <Drawer.Header>
-        <Drawer.Title>{spaceSelected.label}</Drawer.Title>
-        <Drawer.Description>
-          <Badge
-            class={cn(
-              spaceStatusBadgeClasses[spaceSelectedStatus],
-              "border-transparent",
-            )}
-          >
-            {spaceSelectedStatus}
-          </Badge>
-        </Drawer.Description>
-      </Drawer.Header>
-      <p class="mb-3">
-        {spaceSelected.description}
-      </p>
-      {#if spaceSelected.metadata?.amenities}
-        <ul class="mb-3">
-          <h2 class="font-semibold mb-1">Included Amenities</h2>
-          {#each spaceSelected.metadata?.amenities.slice().sort() as amenity}
-            <li class="flex gap-x-1 ps-1">
-              <AmenityIcon {amenity} />
-              <span>{amenity}</span>
-            </li>
-          {/each}
-        </ul>
-      {/if}
-      <div class="mb-3">
-        <h2 class="font-semibold">Directions</h2>
-        <a
-          class="flex gap-x-1 hover:underline"
-          href={spaceGoogleMapLink(spaceSelected)}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <span>Google Maps</span>
-          <ExternalLink class="h-fit w-fit scale-75" />
-        </a>
-      </div>
-      <div>
-        <h2 class="font-semibold">Hours</h2>
-        {#if spaceSelected.alwaysOpen}
-          <span>Always open!</span>
-        {:else}
-          <ul>
-            {#each Object.entries(spaceSelected.hours) as [weekday, segments]}
-              <li class="flex gap-x-1 justify-between">
-                <span class="first-letter:uppercase">{weekday}</span>
-                {#if segments.length > 0}
-                  <span>
-                    {segments
-                      .map((segment) => `${segment.open} - ${segment.close}`)
-                      .join(", ")}
-                  </span>
-                {:else}
-                  <span>Closed</span>
-                {/if}
+{#if spaceSelected}
+  <Drawer.Root bind:open={spaceInfoDrawerOpen}>
+    <Drawer.Content>
+      <div class="mx-auto w-full max-w-md pb-6">
+        <Drawer.Header>
+          <Drawer.Title>{spaceSelected.label}</Drawer.Title>
+          <Drawer.Description>
+            <Badge
+              class={cn(
+                spaceStatusBadgeClasses[spaceSelectedStatus],
+                "border-transparent",
+              )}
+            >
+              {spaceSelectedStatus}
+            </Badge>
+          </Drawer.Description>
+        </Drawer.Header>
+        <p class="mb-3">
+          {spaceSelected.description}
+        </p>
+        {#if spaceSelected.metadata?.amenities}
+          <ul class="mb-3">
+            <h2 class="font-semibold mb-1">Included Amenities</h2>
+            {#each spaceSelected.metadata?.amenities.slice().sort() as amenity}
+              <li class="flex gap-x-1 ps-1">
+                <AmenityIcon {amenity} />
+                <span>{amenity}</span>
               </li>
             {/each}
           </ul>
         {/if}
+        <div class="mb-3">
+          <h2 class="font-semibold">Directions</h2>
+          <a
+            class="flex gap-x-1 hover:underline"
+            href={spaceGoogleMapLink(spaceSelected)}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <span>Google Maps</span>
+            <ExternalLink class="h-fit w-fit scale-75" />
+          </a>
+        </div>
+        <div>
+          <h2 class="font-semibold">Hours</h2>
+          {#if spaceSelected.alwaysOpen}
+            <span>Always open!</span>
+          {:else}
+            <ul>
+              {#each Object.entries(spaceSelected.hours) as [weekday, segments]}
+                <li class="flex gap-x-1 justify-between">
+                  <span class="first-letter:uppercase">{weekday}</span>
+                  {#if segments.length > 0}
+                    <span>
+                      {segments
+                        .map((segment) => `${segment.open} - ${segment.close}`)
+                        .join(", ")}
+                    </span>
+                  {:else}
+                    <span>Closed</span>
+                  {/if}
+                </li>
+              {/each}
+            </ul>
+          {/if}
+        </div>
       </div>
-    </div>
-  </Drawer.Content>
-</Drawer.Root>
+    </Drawer.Content>
+  </Drawer.Root>
+{/if}
