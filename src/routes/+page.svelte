@@ -106,12 +106,12 @@
         onclick={() => openSpaceInfoDrawer(space)}
       >
         <div
-          class="cursor-pointer w-16 h-16 flex items-center justify-center group"
+          class="group flex h-16 w-16 cursor-pointer items-center justify-center"
         >
           <div
             class={cn(
               spaceStatusMarkerClass[getSpaceStatus(space)],
-              "w-2 h-2 rounded-full shadow-3xl",
+              "h-2 w-2 rounded-full shadow-3xl",
             )}
           >
             &nbsp;
@@ -122,7 +122,7 @@
   {/if}
 </MapLibre>
 
-<div class="z-10 absolute top-2.5 left-1/2 -translate-x-1/2">
+<div class="absolute left-1/2 top-2.5 z-10 -translate-x-1/2">
   <Popover.Root bind:open={campusComboboxOpen}>
     <Popover.Trigger bind:ref={campusComboboxTriggerRef}>
       {#snippet child({ props })}
@@ -169,7 +169,7 @@
 </div>
 
 <Button
-  class="absolute top-2.5 right-2.5 z-10"
+  class="absolute right-2.5 top-2.5 z-10"
   onclick={toggleMode}
   variant="outline"
   size="icon"
@@ -183,7 +183,7 @@
   <span class="sr-only">Toggle theme</span>
 </Button>
 
-<Card.Root class="z-10 absolute bottom-10 left-2.5">
+<Card.Root class="absolute bottom-10 left-2.5 z-10">
   <Card.Header>
     <Card.Title>Legend</Card.Title>
     <Card.Description
@@ -195,7 +195,7 @@
       <Badge
         class={cn(
           spaceStatusBadgeClasses["Open"],
-          "border-transparent mr-auto",
+          "mr-auto border-transparent",
         )}
       >
         Open
@@ -203,7 +203,7 @@
       <Badge
         class={cn(
           spaceStatusBadgeClasses["Opening Soon"],
-          "border-transparent mr-auto",
+          "mr-auto border-transparent",
         )}
       >
         Opening Soon/Closing Soon
@@ -211,7 +211,7 @@
       <Badge
         class={cn(
           spaceStatusBadgeClasses["Closed"],
-          "border-transparent mr-auto",
+          "mr-auto border-transparent",
         )}
       >
         Closed
@@ -223,7 +223,7 @@
 {#if spaceSelected}
   <Drawer.Root bind:open={spaceInfoDrawerOpen}>
     <Drawer.Content>
-      <div class="mx-auto w-full max-w-md pb-6 px-4 md:px-0">
+      <div class="mx-auto w-full max-w-md px-4 pb-6 md:px-0">
         <Drawer.Header>
           <Drawer.Title>{spaceSelected.label}</Drawer.Title>
           <Drawer.Description>
@@ -242,7 +242,7 @@
         </p>
         {#if spaceSelected.metadata?.amenities}
           <ul class="mb-3">
-            <h2 class="font-semibold mb-1">Included Amenities</h2>
+            <h2 class="mb-1 font-semibold">Included Amenities</h2>
             {#each spaceSelected.metadata?.amenities.slice().sort() as amenity}
               <li class="flex gap-x-1 ps-1">
                 <AmenityIcon {amenity} />
@@ -270,7 +270,7 @@
           {:else}
             <ul>
               {#each Object.entries(spaceSelected.hours) as [weekday, segments]}
-                <li class="flex gap-x-1 justify-between">
+                <li class="flex justify-between gap-x-1">
                   <span class="first-letter:uppercase">{weekday}</span>
                   {#if segments.length > 0}
                     <span>
