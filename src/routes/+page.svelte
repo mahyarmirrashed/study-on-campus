@@ -204,16 +204,18 @@
           {/each}
         </ul>
       {/if}
-      <h2 class="font-semibold">Directions</h2>
-      <a
-        class="flex gap-x-1 hover:underline"
-        href={spaceGoogleMapLink(spaceSelected)}
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        <span>Google Maps</span>
-        <ExternalLink class="h-fit w-fit scale-75" />
-      </a>
+      <div class="mb-3">
+        <h2 class="font-semibold">Directions</h2>
+        <a
+          class="flex gap-x-1 hover:underline"
+          href={spaceGoogleMapLink(spaceSelected)}
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <span>Google Maps</span>
+          <ExternalLink class="h-fit w-fit scale-75" />
+        </a>
+      </div>
     </div>
   </Drawer.Content>
 </Drawer.Root>
