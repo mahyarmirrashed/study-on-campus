@@ -1,5 +1,6 @@
 <script lang="ts">
   import { PUBLIC_MAPTILER_KEY } from "$env/static/public";
+  import AmenityIcon from "$lib/components/custom/amenity-icon.svelte";
   import { Badge } from "$lib/components/ui/badge/index.js";
   import { Button } from "$lib/components/ui/button/index.js";
   import * as Command from "$lib/components/ui/command/index.js";
@@ -176,6 +177,16 @@
           </Badge>
         </Drawer.Description>
       </Drawer.Header>
+      <ul>
+        {#if spaceSelected?.metadata?.amenities}
+          {#each spaceSelected?.metadata?.amenities as amenity}
+            <li class="flex">
+              <AmenityIcon {amenity} />
+              <span class="ml-1">{amenity}</span>
+            </li>
+          {/each}
+        {/if}
+      </ul>
     </div>
   </Drawer.Content>
 </Drawer.Root>
