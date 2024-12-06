@@ -25,5 +25,5 @@
 
 <svelte:component
   this={amenityMap[amenity] ?? CornerDownRight}
-  class="h-fit w-fit"
+  class="h-fit w-fit scale-75"
 />
