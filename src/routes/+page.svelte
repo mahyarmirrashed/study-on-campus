@@ -1,5 +1,6 @@
 <script lang="ts">
   import { PUBLIC_MAPTILER_KEY } from "$env/static/public";
+  import { Badge } from "$lib/components/ui/badge/index.js";
   import { Button } from "$lib/components/ui/button/index.js";
   import * as Command from "$lib/components/ui/command/index.js";
   import * as Drawer from "$lib/components/ui/drawer/index.js";
@@ -15,6 +16,7 @@
 
   import { campuses } from "$src/data/campuses";
   import { type Space } from "$src/spaces";
+  import { getSpaceStatus } from "$lib/utils";
 
   let campusComboboxOpen = $state(false);
   let campusComboboxTriggerRef = $state<HTMLButtonElement>(null!);
@@ -142,7 +144,15 @@
     <div class="mx-auto w-full max-w-md">
       <Drawer.Header>
         <Drawer.Title>{spaceSelected.label}</Drawer.Title>
-        <Drawer.Description>{spaceSelected.description}</Drawer.Description>
+        <Drawer.Description>
+          <Badge variant="destructive">
+            {#if spaceSelected.alwaysOpen}
+              Open
+            {:else}
+              {getSpaceStatus(spaceSelected.hours)}
+            {/if}
+          </Badge>
+        </Drawer.Description>
       </Drawer.Header>
     </div>
   </Drawer.Content>
