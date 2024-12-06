@@ -216,6 +216,29 @@
           <ExternalLink class="h-fit w-fit scale-75" />
         </a>
       </div>
+      <div>
+        <h2 class="font-semibold">Hours</h2>
+        {#if spaceSelected.alwaysOpen}
+          <span>Always open!</span>
+        {:else}
+          <ul>
+            {#each Object.entries(spaceSelected.hours) as [weekday, segments]}
+              <li class="flex gap-x-1 justify-between">
+                <span class="first-letter:uppercase">{weekday}</span>
+                {#if segments.length > 0}
+                  <span>
+                    {segments
+                      .map((segment) => `${segment.open} - ${segment.close}`)
+                      .join(", ")}
+                  </span>
+                {:else}
+                  <span>Closed</span>
+                {/if}
+              </li>
+            {/each}
+          </ul>
+        {/if}
+      </div>
     </div>
   </Drawer.Content>
 </Drawer.Root>
