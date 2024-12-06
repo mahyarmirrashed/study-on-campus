@@ -6,3 +6,4 @@
 - [x] Collect data for place times.
 - [ ] Make key private again.
 - [x] Persist state with runed.
+- [ ] Add internalization.
