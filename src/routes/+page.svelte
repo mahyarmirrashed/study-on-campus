@@ -8,7 +8,13 @@
   import * as Popover from "$lib/components/ui/popover/index.js";
   import { cn } from "$lib/utils.js";
 
-  import { Check, ChevronsUpDown, Sun, Moon } from "lucide-svelte/icons";
+  import {
+    Check,
+    ChevronsUpDown,
+    ExternalLink,
+    Sun,
+    Moon,
+  } from "lucide-svelte/icons";
   import maplibregl from "maplibre-gl";
   import { toggleMode, mode } from "mode-watcher";
   import { PersistedState } from "runed";
@@ -47,6 +53,13 @@
     tick().then(() => {
       campusComboboxTriggerRef.focus();
     });
+  }
+
+  function spaceGoogleMapLink(space: Space) {
+    return (
+      space.metadata?.link ??
+      `https://www.google.com/maps?q=${space.location.lat},${space.location.lng}`
+    );
   }
 
   const spaceStatusBadgeClasses: Record<SpaceStatus, string> = {
@@ -191,6 +204,16 @@
           {/each}
         </ul>
       {/if}
+      <h2 class="font-semibold">Directions</h2>
+      <a
+        class="flex gap-x-1 hover:underline"
+        href={spaceGoogleMapLink(spaceSelected)}
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        <span>Google Maps</span>
+        <ExternalLink class="h-fit w-fit scale-75" />
+      </a>
     </div>
   </Drawer.Content>
 </Drawer.Root>
