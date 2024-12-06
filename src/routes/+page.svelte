@@ -101,13 +101,15 @@
         class="cursor-pointer"
         onclick={() => openSpaceInfoDrawer(space)}
       >
-        <div
-          class={cn(
-            spaceStatusMarkerClass[getSpaceStatus(space)],
-            "w-4 h-4 rounded-full",
-          )}
-        >
-          &nbsp;
+        <div class="cursor-pointer w-16 h-16 flex items-center justify-center">
+          <div
+            class={cn(
+              spaceStatusMarkerClass[getSpaceStatus(space)],
+              "w-4 h-4 rounded-full",
+            )}
+          >
+            &nbsp;
+          </div>
         </div>
       </Marker>
     {/each}
