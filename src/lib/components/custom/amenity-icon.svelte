@@ -11,7 +11,10 @@
     Icon,
   } from "lucide-svelte/icons";
 
-  export let amenity: SpaceAmenities;
+  interface Props {
+    amenity: SpaceAmenities;
+  }
+  let { amenity, ...restProps }: Props = $props();
 
   const amenityMap: Record<SpaceAmenities, typeof Icon> = {
     Computers: Computer,
@@ -26,4 +29,5 @@
 <svelte:component
   this={amenityMap[amenity] ?? CornerDownRight}
   class="h-fit w-fit scale-75"
+  {...restProps}
 />
