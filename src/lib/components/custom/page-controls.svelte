@@ -12,7 +12,7 @@
   import { toggleMode } from "mode-watcher";
   import { PersistedState } from "runed";
 
-  const language = new PersistedState<AvailableLanguageTag>("language", "fr");
+  const language = new PersistedState<AvailableLanguageTag>("language", "en");
 
   function switchLanguage() {
     if (language.current === "en") language.current = "fr";
