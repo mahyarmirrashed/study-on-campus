@@ -23,6 +23,9 @@ importers:
       svelte-maplibre:
         specifier: 1.0.0-next.7
         version: 1.0.0-next.7(svelte@5.6.2)
+      translate:
+        specifier: ^3.0.1
+        version: 3.0.1
     devDependencies:
       '@eslint/compat':
         specifier: ^1.2.4
@@ -2110,6 +2113,9 @@ packages:
   totalist@3.0.1:
     resolution: {integrity: sha512-sf4i37nQ2LBx4m3wB74y+ubopq6W/dIzXg0FDGjsYnZHVa1Da8FH853wlL2gtUhg+xJXjfk3kUZS3BRoQeoQBQ==}
     engines: {node: '>=6'}
+
+  translate@3.0.1:
+    resolution: {integrity: sha512-ZePIRh2uuN7ofL6V2KfRh71525pwPCC8CtoWJg29tQcr3vhGTFXzz2nYG+rmRxlZ5PCcMza/GDXqxLFx5omVpQ==}
 
   ts-api-utils@1.4.3:
     resolution: {integrity: sha512-i3eMG77UTMD0hZhgRS562pv83RC6ukSAC2GMNWc+9dieh/+jDM5u5YG+NHX6VNDRHQcHwmsTHctP9LhbC3WxVw==}
@@ -4249,6 +4255,8 @@ snapshots:
       is-number: 7.0.0
 
   totalist@3.0.1: {}
+
+  translate@3.0.1: {}
 
   ts-api-utils@1.4.3(typescript@5.7.2):
     dependencies:
