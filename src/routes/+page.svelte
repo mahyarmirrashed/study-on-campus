@@ -9,9 +9,11 @@
   import * as Command from "$lib/components/ui/command/index.js";
   import * as Drawer from "$lib/components/ui/drawer/index.js";
   import * as Popover from "$lib/components/ui/popover/index.js";
+  import * as m from "$lib/paraglide/messages.js";
   import { getSpaceStatus } from "$lib/utils";
   import { cn } from "$lib/utils.js";
-  import { campuses } from "$src/data/campuses";
+  import { campuses } from "$src/data/en";
+  import { languageTag } from "$src/lib/paraglide/runtime";
   import type { Space } from "$src/spaces";
   import { Check, ChevronsUpDown } from "lucide-svelte/icons";
   import maplibregl from "maplibre-gl";
@@ -19,6 +21,7 @@
   import { PersistedState } from "runed";
   import { tick, onDestroy } from "svelte";
   import { MapLibre, Marker } from "svelte-maplibre";
+  import translate from "translate";
 
   let currentTime = $state<Date>(new Date());
   const intervalId = setInterval(() => (currentTime = new Date()), 60 * 1000);
@@ -74,7 +77,7 @@
 </script>
 
 <svelte:head>
-  <title>Campus Study Spots</title>
+  <title>{m.websiteTitle()}</title>
 </svelte:head>
 
 <MapLibre bind:map style={maptilerStyle} class="min-h-screen" standardControls>
@@ -103,21 +106,31 @@
       {#snippet child({ props })}
         <Button
           variant="outline"
-          class="w-52 justify-between"
+          class="w-60 justify-between"
           {...props}
           role="combobox"
           aria-expanded={campusComboboxOpen}
         >
-          {campusSelected?.label || "Select a campus..."}
+          {#if campusSelected?.label}
+            {#await translate(campusSelected.label, languageTag())}
+              ...
+            {:then result}
+              {result}
+            {:catch}
+              {campusSelected.label}
+            {/await}
+          {:else}
+            {m.selectCampus()}
+          {/if}
           <ChevronsUpDown class="opacity-50" />
         </Button>
       {/snippet}
     </Popover.Trigger>
-    <Popover.Content class="w-52 p-0">
+    <Popover.Content class="w-60 p-0">
       <Command.Root>
-        <Command.Input placeholder="Search campuses..." />
+        <Command.Input placeholder={m.searchCampus()} />
         <Command.List>
-          <Command.Empty>No campus found.</Command.Empty>
+          <Command.Empty>{m.campusNotFound()}</Command.Empty>
           <Command.Group>
             {#each campuses as campus}
               <Command.Item
@@ -129,11 +142,18 @@
               >
                 <Check
                   class={cn(
-                    "ml-auto",
                     campusValue.current !== campus.value && "text-transparent",
                   )}
                 />
-                {campus.label}
+                <span class="mr-auto">
+                  {#await translate(campus.label, languageTag())}
+                    ...
+                  {:then result}
+                    {result}
+                  {:catch}
+                    {campus.label}
+                  {/await}
+                </span>
               </Command.Item>
             {/each}
           </Command.Group>
@@ -145,11 +165,11 @@
 
 <PageControls />
 
-<Card.Root class="absolute bottom-10 left-2.5 z-10">
+<Card.Root class="absolute bottom-10 left-2.5 z-10 w-96 max-w-full">
   <Card.Header>
-    <Card.Title>Legend</Card.Title>
+    <Card.Title>{m.legend()}</Card.Title>
     <Card.Description>
-      Colors indicate open status of the spaces.
+      {m.colorIndication()}
     </Card.Description>
   </Card.Header>
   <Card.Content>
@@ -171,7 +191,7 @@
             <SpaceStatusBadge status={spaceSelectedStatus} />
           </Drawer.Description>
         </Drawer.Header>
-        <SpaceInformation bind:spaceSelected />
+        <SpaceInformation space={spaceSelected} />
       </div>
     </Drawer.Content>
   </Drawer.Root>

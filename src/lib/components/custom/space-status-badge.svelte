@@ -1,5 +1,6 @@
 <script lang="ts">
   import { Badge } from "$lib/components/ui/badge/index.js";
+  import * as m from "$lib/paraglide/messages.js";
   import { cn } from "$lib/utils.js";
   import type { SpaceStatus } from "$src/spaces.d";
 
@@ -9,6 +10,12 @@
   }
   let { status, class: className, ...restProps }: Props = $props();
 
+  const t: Record<SpaceStatus, string> = {
+    Open: m.open(),
+    Closed: m.closed(),
+    "Opening Soon": m.openingSoon(),
+    "Closing Soon": m.closingSoon(),
+  };
   const classes: Record<SpaceStatus, string> = {
     Open: "bg-green-400 hover:bg-green-500",
     Closed: "bg-red-400 hover:bg-red-500",
@@ -21,5 +28,5 @@
   class={cn(classes[status], "border-transparent", className)}
   {...restProps}
 >
-  {status}
+  {t[status]}
 </Badge>

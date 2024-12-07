@@ -6,5 +6,5 @@
 - [x] Collect data for place times.
 - [ ] Make key private again.
 - [x] Persist state with runed.
-- [ ] Add internalization.
+- [x] Add internalization.
 - [x] Refactor components into separate files.

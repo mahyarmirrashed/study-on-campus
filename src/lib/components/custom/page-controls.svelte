@@ -3,6 +3,7 @@
   import { page } from "$app/stores";
   import { Button } from "$lib/components/ui/button/index.js";
   import { i18n } from "$lib/i18n";
+  import * as m from "$lib/paraglide/messages.js";
   import {
     setLanguageTag,
     type AvailableLanguageTag,
@@ -33,7 +34,7 @@
     <Moon
       class="absolute h-fit w-fit rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100"
     />
-    <span class="sr-only">Toggle theme</span>
+    <span class="sr-only">{m.toggleTheme()}</span>
   </Button>
   <Button
     onclick={switchLanguage}
@@ -42,6 +43,6 @@
     class="uppercase"
   >
     {language.current}
-    <span class="sr-only">Toggle language</span>
+    <span class="sr-only">{m.toggleLanguage()}</span>
   </Button>
 </div>

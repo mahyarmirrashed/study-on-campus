@@ -1,6 +1,6 @@
 import { type Campus } from "$src/campuses.d";
-import { locations as universityOfManitobaLocations } from "./en/university-of-manitoba";
-import { locations as universityOfWaterlooLocations } from "./en/university-of-waterloo";
+import { locations as universityOfManitobaLocations } from "./university-of-manitoba";
+import { locations as universityOfWaterlooLocations } from "./university-of-waterloo";
 
 export const campuses: Campus[] = [
   {
