@@ -3,7 +3,13 @@
   import { Skeleton } from "$lib/components/ui/skeleton/index.js";
   import * as m from "$lib/paraglide/messages.js";
   import { languageTag } from "$src/lib/paraglide/runtime";
-  import type { Space, SpaceAmenities, Weekdays } from "$src/spaces.d";
+  import type { AvailableLanguageTag } from "$src/paraglide/runtime";
+  import type {
+    Space,
+    SpaceAmenities,
+    SpaceHoursSegment,
+    Weekdays,
+  } from "$src/spaces.d";
   import { ExternalLink } from "lucide-svelte/icons";
   import translate from "translate";
 
@@ -36,6 +42,21 @@
       space.metadata?.link ??
       `https://www.google.com/maps?q=${space.location.lat},${space.location.lng}`
     );
+  }
+  function spaceHours(
+    hours: SpaceHoursSegment[],
+    language: AvailableLanguageTag,
+  ) {
+    if (hours.length === 0) return m.closed();
+
+    const localizeHours = (time: string) => time.replace(/\:/g, "h");
+    const compiledHours = hours
+      .map((hours) => `${hours.open} - ${hours.close}`)
+      .join(", ");
+
+    return ["fr"].includes(language)
+      ? localizeHours(compiledHours)
+      : compiledHours;
   }
 </script>
 
@@ -81,18 +102,12 @@
     <span>{m.alwaysOpen()}</span>
   {:else}
     <ul>
-      {#each Object.entries(space.hours) as [weekday, segments]}
+      {#each Object.entries(space.hours) as [weekday, hours]}
         <li class="flex justify-between gap-x-1">
           <span class="first-letter:uppercase">{tw[weekday as Weekdays]}</span>
-          {#if segments.length > 0}
-            <span>
-              {segments
-                .map((segment) => `${segment.open} - ${segment.close}`)
-                .join(", ")}
-            </span>
-          {:else}
-            <span>{m.closed()}</span>
-          {/if}
+          <span>
+            {spaceHours(hours, languageTag())}
+          </span>
         </li>
       {/each}
     </ul>
