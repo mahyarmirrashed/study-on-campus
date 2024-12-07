@@ -24,10 +24,8 @@
     "Water Fountains": Droplet,
     WiFi: Wifi,
   };
+
+  const Amenity = amenityMap[amenity] ?? CornerDownRight;
 </script>
 
-<svelte:component
-  this={amenityMap[amenity] ?? CornerDownRight}
-  class="h-fit w-fit scale-75"
-  {...restProps}
-/>
+<Amenity class="h-fit w-fit scale-75" {...restProps} />
