@@ -1,5 +1,8 @@
 <script lang="ts">
+  import { goto } from "$app/navigation";
+  import { page } from "$app/stores";
   import { Button } from "$lib/components/ui/button/index.js";
+  import { i18n } from "$lib/i18n";
   import {
     setLanguageTag,
     type AvailableLanguageTag,
@@ -15,6 +18,10 @@
     else if (language.current === "fr") language.current = "en";
 
     setLanguageTag(language.current);
+
+    const canonicalPath = i18n.route($page.url.pathname);
+    const localisedPath = i18n.resolveRoute(canonicalPath, language.current);
+    goto(localisedPath);
   }
 </script>
 
