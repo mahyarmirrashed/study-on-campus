@@ -1,5 +1,6 @@
 <script lang="ts">
   import { PUBLIC_MAPTILER_KEY } from "$env/static/public";
+  import PageControls from "$lib/components/custom/page-controls.svelte";
   import SpaceInformation from "$lib/components/custom/space-information.svelte";
   import SpaceMarker from "$lib/components/custom/space-marker.svelte";
   import SpaceStatusBadge from "$lib/components/custom/space-status-badge.svelte";
@@ -12,9 +13,9 @@
   import { cn } from "$lib/utils.js";
   import { campuses } from "$src/data/campuses";
   import type { Space } from "$src/spaces";
-  import { Check, ChevronsUpDown, Sun, Moon } from "lucide-svelte/icons";
+  import { Check, ChevronsUpDown } from "lucide-svelte/icons";
   import maplibregl from "maplibre-gl";
-  import { toggleMode, mode } from "mode-watcher";
+  import { mode } from "mode-watcher";
   import { PersistedState } from "runed";
   import { tick, onDestroy } from "svelte";
   import { MapLibre, Marker } from "svelte-maplibre";
@@ -142,20 +143,7 @@
   </Popover.Root>
 </div>
 
-<Button
-  class="absolute right-2.5 top-2.5 z-10"
-  onclick={toggleMode}
-  variant="outline"
-  size="icon"
->
-  <Sun
-    class="h-fit w-fit rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0"
-  />
-  <Moon
-    class="absolute h-fit w-fit rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100"
-  />
-  <span class="sr-only">Toggle theme</span>
-</Button>
+<PageControls />
 
 <Card.Root class="absolute bottom-10 left-2.5 z-10">
   <Card.Header>
