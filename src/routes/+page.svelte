@@ -26,7 +26,7 @@
 
   let campusComboboxOpen = $state(false);
   let campusComboboxTriggerRef = $state<HTMLButtonElement>(null!);
-  const campusValue = new PersistedState("count", "");
+  const campusValue = new PersistedState("campus", "");
   const campusSelected = $derived(
     campuses.find((campus) => campus.value === campusValue.current),
   );
