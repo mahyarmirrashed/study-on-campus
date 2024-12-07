@@ -1,7 +1,7 @@
 <script lang="ts">
   import { PUBLIC_MAPTILER_KEY } from "$env/static/public";
   import AmenityIcon from "$lib/components/custom/amenity-icon.svelte";
-  import { Badge } from "$lib/components/ui/badge/index.js";
+  import SpaceStatusBadge from "$lib/components/custom/space-status-badge.svelte";
   import { Button } from "$lib/components/ui/button/index.js";
   import * as Card from "$lib/components/ui/card/index.js";
   import * as Command from "$lib/components/ui/command/index.js";
@@ -72,12 +72,6 @@
     );
   }
 
-  const spaceStatusBadgeClasses: Record<SpaceStatus, string> = {
-    Open: "bg-green-400 hover:bg-green-500",
-    Closed: "bg-red-400 hover:bg-red-500",
-    "Opening Soon": "bg-yellow-400 hover:bg-yellow-500",
-    "Closing Soon": "bg-yellow-400 hover:bg-yellow-500",
-  };
   const spaceStatusMarkerClass: Record<SpaceStatus, string> = {
     Open: "bg-green-400 shadow-green-400 group-hover:bg-green-500 group-hover:shadow-green-500",
     Closed:
@@ -200,36 +194,15 @@
 <Card.Root class="absolute bottom-10 left-2.5 z-10">
   <Card.Header>
     <Card.Title>Legend</Card.Title>
-    <Card.Description
-      >Colors indicate open status of the spaces.</Card.Description
-    >
+    <Card.Description>
+      Colors indicate open status of the spaces.
+    </Card.Description>
   </Card.Header>
   <Card.Content>
     <div class="flex flex-col gap-y-2">
-      <Badge
-        class={cn(
-          spaceStatusBadgeClasses["Open"],
-          "mr-auto border-transparent",
-        )}
-      >
-        Open
-      </Badge>
-      <Badge
-        class={cn(
-          spaceStatusBadgeClasses["Opening Soon"],
-          "mr-auto border-transparent",
-        )}
-      >
-        Opening Soon/Closing Soon
-      </Badge>
-      <Badge
-        class={cn(
-          spaceStatusBadgeClasses["Closed"],
-          "mr-auto border-transparent",
-        )}
-      >
-        Closed
-      </Badge>
+      <SpaceStatusBadge status={"Open"} class="mr-auto" />
+      <SpaceStatusBadge status={"Closing Soon"} class="mr-auto" />
+      <SpaceStatusBadge status={"Closed"} class="mr-auto" />
     </div>
   </Card.Content>
 </Card.Root>
@@ -241,14 +214,7 @@
         <Drawer.Header>
           <Drawer.Title>{spaceSelected.label}</Drawer.Title>
           <Drawer.Description>
-            <Badge
-              class={cn(
-                spaceStatusBadgeClasses[spaceSelectedStatus],
-                "border-transparent",
-              )}
-            >
-              {spaceSelectedStatus}
-            </Badge>
+            <SpaceStatusBadge status={spaceSelectedStatus} />
           </Drawer.Description>
         </Drawer.Header>
         <p class="mb-3">
