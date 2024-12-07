@@ -1,6 +1,7 @@
 <script lang="ts">
   import { PUBLIC_MAPTILER_KEY } from "$env/static/public";
   import SpaceInformation from "$lib/components/custom/space-information.svelte";
+  import SpaceMarker from "$lib/components/custom/space-marker.svelte";
   import SpaceStatusBadge from "$lib/components/custom/space-status-badge.svelte";
   import { Button } from "$lib/components/ui/button/index.js";
   import * as Card from "$lib/components/ui/card/index.js";
@@ -10,7 +11,7 @@
   import { getSpaceStatus } from "$lib/utils";
   import { cn } from "$lib/utils.js";
   import { campuses } from "$src/data/campuses";
-  import type { Space, SpaceStatus } from "$src/spaces";
+  import type { Space } from "$src/spaces";
   import { Check, ChevronsUpDown, Sun, Moon } from "lucide-svelte/icons";
   import maplibregl from "maplibre-gl";
   import { toggleMode, mode } from "mode-watcher";
@@ -58,16 +59,6 @@
     });
   }
 
-  const spaceStatusMarkerClass: Record<SpaceStatus, string> = {
-    Open: "bg-green-400 shadow-green-400 group-hover:bg-green-500 group-hover:shadow-green-500",
-    Closed:
-      "bg-red-400 shadow-red-400 group-hover:bg-red-500 group-hover:shadow-red-500",
-    "Opening Soon":
-      "bg-yellow-400 shadow-yellow-400 group-hover:bg-yellow-500 group-hover:shadow-yellow-500",
-    "Closing Soon":
-      "bg-yellow-400 shadow-yellow-400 group-hover:bg-yellow-500 group-hover:shadow-yellow-500",
-  };
-
   $effect(() => {
     if (campusSelected) {
       const displayOptions = campusSelected.metadata?.display;
@@ -93,24 +84,13 @@
         class="cursor-pointer"
         onclick={() => openSpaceInfoDrawer(space)}
       >
-        <div
-          class="group flex h-16 w-16 cursor-pointer items-center justify-center"
-        >
-          <div
-            class={cn(
-              spaceStatusMarkerClass[
-                getSpaceStatus(
-                  space,
-                  campusSelected.metadata?.timezone,
-                  currentTime,
-                )
-              ],
-              "h-2 w-2 rounded-full shadow-3xl",
-            )}
-          >
-            &nbsp;
-          </div>
-        </div>
+        <SpaceMarker
+          status={getSpaceStatus(
+            space,
+            campusSelected.metadata?.timezone,
+            currentTime,
+          )}
+        />
       </Marker>
     {/each}
   {/if}
