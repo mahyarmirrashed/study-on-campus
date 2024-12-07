@@ -3,11 +3,11 @@
   import { cn } from "$lib/utils.js";
   import type { SpaceStatus } from "$src/spaces.d";
 
-  let {
-    status,
-    class: className,
-    ...restProps
-  }: { status: SpaceStatus; class?: string } = $props();
+  interface Props {
+    status: SpaceStatus;
+    class?: string;
+  }
+  let { status, class: className, ...restProps }: Props = $props();
 
   const classes: Record<SpaceStatus, string> = {
     Open: "bg-green-400 hover:bg-green-500",
