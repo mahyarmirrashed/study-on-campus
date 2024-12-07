@@ -10,7 +10,7 @@ Thank you to the open-source community for making this project possible[^1] [^2]
 This project leverages several modern technologies to provide a seamless and
 dynamic user experience:
 
-- **Svelte 4**: Core framework used to build the application, ensuring fast and
+- **Svelte 5**: Core framework used to build the application, ensuring fast and
   reactive interfaces;
 - **Runes**: Extends Svelte with additional capabilities for state and logic
   management;
