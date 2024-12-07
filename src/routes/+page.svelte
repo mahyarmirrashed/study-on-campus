@@ -12,7 +12,7 @@
   import * as m from "$lib/paraglide/messages.js";
   import { getSpaceStatus } from "$lib/utils";
   import { cn } from "$lib/utils.js";
-  import { campuses } from "$src/data/en";
+  import { campuses } from "$src/data";
   import { languageTag } from "$src/lib/paraglide/runtime";
   import type { Space } from "$src/spaces";
   import { Check, ChevronsUpDown } from "lucide-svelte/icons";
