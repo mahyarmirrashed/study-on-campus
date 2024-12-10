@@ -1,6 +1,7 @@
 <script lang="ts">
   import { goto } from "$app/navigation";
   import { page } from "$app/stores";
+  import { PUBLIC_GITHUB_LINK } from "$env/static/public";
   import { Button } from "$lib/components/ui/button/index.js";
   import { i18n } from "$lib/i18n";
   import * as m from "$lib/paraglide/messages.js";
@@ -8,7 +9,7 @@
     setLanguageTag,
     type AvailableLanguageTag,
   } from "$src/lib/paraglide/runtime";
-  import { Sun, Moon } from "lucide-svelte/icons";
+  import { Github, Moon, Sun } from "lucide-svelte/icons";
   import { toggleMode } from "mode-watcher";
   import { PersistedState } from "runed";
 
@@ -45,4 +46,10 @@
     {language.current}
     <span class="sr-only">{m.toggleLanguage()}</span>
   </Button>
+  <a href={PUBLIC_GITHUB_LINK} target="_blank" rel="noopener noreferrer">
+    <Button variant="outline" size="icon" class="uppercase">
+      <Github class="h-fit w-fit scale-100 " />
+      <span class="sr-only">{m.visitSource()}</span>
+    </Button>
+  </a>
 </div>
