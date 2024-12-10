@@ -5,6 +5,11 @@ Find study spots on- and off-campus quickly!
 Thank you to the open-source community for making this project possible[^1] [^2]
 [^3] [^4].
 
+## Contributions
+
+I welcome all contributions for more student spaces. All of the data is stored in the
+[`src/data`](./src/data/) folder. Thank you in advance.
+
 ## Technologies Used
 
 This project leverages several modern technologies to provide a seamless and
