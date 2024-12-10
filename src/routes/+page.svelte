@@ -169,7 +169,15 @@
     <Drawer.Content>
       <div class="mx-auto w-full max-w-md px-4 pb-6 md:px-0">
         <Drawer.Header>
-          <Drawer.Title>{spaceSelected.label}</Drawer.Title>
+          <Drawer.Title>
+            {#await translate(spaceSelected.label, languageTag())}
+              ...
+            {:then result}
+              {result}
+            {:catch}
+              {spaceSelected.label}
+            {/await}
+          </Drawer.Title>
           <Drawer.Description>
             <SpaceStatusBadge status={spaceSelectedStatus} />
           </Drawer.Description>
