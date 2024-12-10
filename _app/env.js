@@ -1,1 +1,1 @@
-export const env={"PUBLIC_MAPTILER_KEY":"LYsosKTbN7Q5Pq1NzJI1"}
+export const env={"PUBLIC_GITHUB_LINK":"https://github.com/mahyarmirrashed/study-spots","PUBLIC_MAPTILER_KEY":"LYsosKTbN7Q5Pq1NzJI1"}
