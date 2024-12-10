@@ -5,7 +5,6 @@
   import SpaceMarker from "$lib/components/custom/space-marker.svelte";
   import SpaceStatusBadge from "$lib/components/custom/space-status-badge.svelte";
   import { Button } from "$lib/components/ui/button/index.js";
-  import * as Card from "$lib/components/ui/card/index.js";
   import * as Command from "$lib/components/ui/command/index.js";
   import * as Drawer from "$lib/components/ui/drawer/index.js";
   import * as Popover from "$lib/components/ui/popover/index.js";

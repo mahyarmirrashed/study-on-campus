@@ -2,14 +2,16 @@
   import { goto } from "$app/navigation";
   import { page } from "$app/stores";
   import { PUBLIC_GITHUB_LINK } from "$env/static/public";
-  import { Button } from "$lib/components/ui/button/index.js";
+  import SpaceStatusBadge from "$lib/components/custom/space-status-badge.svelte";
+  import { Button, buttonVariants } from "$lib/components/ui/button/index.js";
+  import * as Dialog from "$lib/components/ui/dialog/index.js";
   import { i18n } from "$lib/i18n";
   import * as m from "$lib/paraglide/messages.js";
   import {
     setLanguageTag,
     type AvailableLanguageTag,
   } from "$src/lib/paraglide/runtime";
-  import { Github, Moon, Sun } from "lucide-svelte/icons";
+  import { CircleHelp, Github, Moon, Sun } from "lucide-svelte/icons";
   import { toggleMode } from "mode-watcher";
   import { PersistedState } from "runed";
 
@@ -52,4 +54,25 @@
       <span class="sr-only">{m.visitSource()}</span>
     </Button>
   </a>
+  <Dialog.Root>
+    <Dialog.Trigger
+      class={buttonVariants({ variant: "outline", size: "icon" })}
+    >
+      <CircleHelp class="h-fit w-fit scale-100 " />
+      <span class="sr-only">{m.getHelp()}</span>
+    </Dialog.Trigger>
+    <Dialog.Content>
+      <Dialog.Header>
+        <Dialog.Title>{m.legend()}</Dialog.Title>
+        <Dialog.Description>
+          {m.colorIndication()}
+        </Dialog.Description>
+      </Dialog.Header>
+      <div class="flex flex-col gap-y-2">
+        <SpaceStatusBadge status={"Open"} class="mr-auto" />
+        <SpaceStatusBadge status={"Closing Soon"} class="mr-auto" />
+        <SpaceStatusBadge status={"Closed"} class="mr-auto" />
+      </div>
+    </Dialog.Content>
+  </Dialog.Root>
 </div>
