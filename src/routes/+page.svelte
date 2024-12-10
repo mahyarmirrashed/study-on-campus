@@ -165,22 +165,6 @@
 
 <PageControls />
 
-<Card.Root class="absolute bottom-10 left-2.5 z-10 w-96 max-w-full">
-  <Card.Header>
-    <Card.Title>{m.legend()}</Card.Title>
-    <Card.Description>
-      {m.colorIndication()}
-    </Card.Description>
-  </Card.Header>
-  <Card.Content>
-    <div class="flex flex-col gap-y-2">
-      <SpaceStatusBadge status={"Open"} class="mr-auto" />
-      <SpaceStatusBadge status={"Closing Soon"} class="mr-auto" />
-      <SpaceStatusBadge status={"Closed"} class="mr-auto" />
-    </div>
-  </Card.Content>
-</Card.Root>
-
 {#if spaceSelected}
   <Drawer.Root bind:open={spaceInfoDrawerOpen}>
     <Drawer.Content>
