@@ -76,6 +76,16 @@ export const locations: Space[] = [
     const response = await fetch(PUBLIC_API_ENDPOINT__UNIVERISTY_OF_WATERLOO);
     const waterlooData: WaterlooClassrooms = await response.json();
 
+    const weekdays: Weekdays[] = [
+      "monday",
+      "tuesday",
+      "wednesday",
+      "thursday",
+      "friday",
+      "saturday",
+      "sunday",
+    ];
+
     const dynamicLocations: Space[] = waterlooData.data.features.map(
       (feature) => {
         const { buildingName, openClassroomSlots } = feature.properties;
@@ -88,15 +98,13 @@ export const locations: Space[] = [
         const buildingHours: Record<
           Weekdays,
           { earliest: string; latest: string }
-        > = {
-          monday: { earliest: "23:59", latest: "00:00" },
-          tuesday: { earliest: "23:59", latest: "00:00" },
-          wednesday: { earliest: "23:59", latest: "00:00" },
-          thursday: { earliest: "23:59", latest: "00:00" },
-          friday: { earliest: "23:59", latest: "00:00" },
-          saturday: { earliest: "23:59", latest: "00:00" },
-          sunday: { earliest: "23:59", latest: "00:00" },
-        };
+        > = weekdays.reduce(
+          (acc, day) => {
+            acc[day] = { earliest: "23:59", latest: "00:00" };
+            return acc;
+          },
+          {} as Record<Weekdays, { earliest: string; latest: string }>,
+        );
 
         for (const room of parsedSlots.data) {
           for (const schedule of room.Schedule) {
@@ -115,71 +123,18 @@ export const locations: Space[] = [
           }
         }
 
-        const hours: SpaceHours = {
-          monday:
-            buildingHours.monday.earliest === "23:59"
-              ? []
-              : [
-                  {
-                    open: buildingHours.monday.earliest,
-                    close: buildingHours.monday.latest,
-                  },
-                ],
-          tuesday:
-            buildingHours.tuesday.earliest === "23:59"
-              ? []
-              : [
-                  {
-                    open: buildingHours.tuesday.earliest,
-                    close: buildingHours.tuesday.latest,
-                  },
-                ],
-          wednesday:
-            buildingHours.wednesday.earliest === "23:59"
-              ? []
-              : [
-                  {
-                    open: buildingHours.wednesday.earliest,
-                    close: buildingHours.wednesday.latest,
-                  },
-                ],
-          thursday:
-            buildingHours.thursday.earliest === "23:59"
-              ? []
-              : [
-                  {
-                    open: buildingHours.thursday.earliest,
-                    close: buildingHours.thursday.latest,
-                  },
-                ],
-          friday:
-            buildingHours.friday.earliest === "23:59"
-              ? []
-              : [
-                  {
-                    open: buildingHours.friday.earliest,
-                    close: buildingHours.friday.latest,
-                  },
-                ],
-          saturday:
-            buildingHours.saturday.earliest === "23:59"
-              ? []
-              : [
-                  {
-                    open: buildingHours.saturday.earliest,
-                    close: buildingHours.saturday.latest,
-                  },
-                ],
-          sunday:
-            buildingHours.sunday.earliest === "23:59"
-              ? []
-              : [
-                  {
-                    open: buildingHours.sunday.earliest,
-                    close: buildingHours.sunday.latest,
-                  },
-                ],
-        };
+        const toDayHours = ({
+          earliest,
+          latest,
+        }: {
+          earliest: string;
+          latest: string;
+        }) => (earliest === "23:59" ? [] : [{ open: earliest, close: latest }]);
+
+        const hours: SpaceHours = weekdays.reduce((acc, day) => {
+          acc[day] = toDayHours(buildingHours[day]);
+          return acc;
+        }, {} as SpaceHours);
 
         return {
           value: buildingName?.toLowerCase().replace(/\s+/g, "-") || "",
