@@ -38,6 +38,14 @@ functionality of the application:
   notifications about their opening or closing times, enhancing the utility of
   the platform.
 
+## References
+
+Thanks to both of these similar projects for providing insights on locations for
+other campuses:
+
+- https://spots.aksharbarot.com/; and
+- https://www.uoftatlas.com/.
+
 ## Screenshots
 
 ![](./static/desktop.png "Desktop View")
