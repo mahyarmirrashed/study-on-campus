@@ -23,6 +23,7 @@ jobs:
         env:
           PUBLIC_MAPTILER_KEY: ${{ secrets.PUBLIC_MAPTILER_KEY }}
           PUBLIC_GITHUB_LINK: ${{ secrets.PUBLIC_GITHUB_LINK }}
+          PUBLIC_API_ENDPOINT__UNIVERISTY_OF_WATERLOO: ${{ secrets.PUBLIC_API_ENDPOINT__UNIVERISTY_OF_WATERLOO }}
       - name: Publish
         uses: peaceiris/actions-gh-pages@v3
         with:
