@@ -28,6 +28,10 @@ interface WaterlooOpenClassroomSlots {
   }[];
 }
 
+interface CORSProxy {
+  contents: string;
+}
+
 export const locations: Space[] = [
   {
     value: "dana-porter-library",
@@ -73,8 +77,9 @@ export const locations: Space[] = [
 
 (async function () {
   try {
-    const response = await fetch(PUBLIC_API_ENDPOINT__UNIVERISTY_OF_WATERLOO);
-    const waterlooData: WaterlooClassrooms = await response.json();
+    const rep = await fetch(PUBLIC_API_ENDPOINT__UNIVERISTY_OF_WATERLOO);
+    const repProxy: CORSProxy = await rep.json();
+    const waterlooData: WaterlooClassrooms = JSON.parse(repProxy.contents);
 
     const weekdays: Weekdays[] = [
       "monday",
