@@ -7,8 +7,8 @@ Thank you to the open-source community for making this project possible[^1] [^2]
 
 ## Contributions
 
-I welcome all contributions for more student spaces. All of the data is stored in the
-[`src/data`](./src/data/) folder. Thank you in advance.
+I welcome all contributions for more student spaces. All of the data is stored
+in the [`src/data`](./src/data/) folder. Thank you in advance.
 
 ## Technologies Used
 

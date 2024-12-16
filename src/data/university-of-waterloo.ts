@@ -1,5 +1,5 @@
-import { type Space, type SpaceHours, type Weekdays } from "$src/spaces.d";
 import { PUBLIC_API_ENDPOINT__UNIVERISTY_OF_WATERLOO } from "$env/static/public";
+import { type Space, type SpaceHours, type Weekdays } from "$src/spaces.d";
 
 interface WaterlooClassrooms {
   data: {
@@ -76,70 +76,124 @@ export const locations: Space[] = [
     const response = await fetch(PUBLIC_API_ENDPOINT__UNIVERISTY_OF_WATERLOO);
     const waterlooData: WaterlooClassrooms = await response.json();
 
-    const dynamicLocations: Space[] = waterlooData.data.features.map((feature) => {
-      const { buildingName, openClassroomSlots } = feature.properties;
-      const [lng, lat] = feature.geometry.coordinates;
+    const dynamicLocations: Space[] = waterlooData.data.features.map(
+      (feature) => {
+        const { buildingName, openClassroomSlots } = feature.properties;
+        const [lng, lat] = feature.geometry.coordinates;
 
-      const parsedSlots: WaterlooOpenClassroomSlots = openClassroomSlots
-        ? JSON.parse(openClassroomSlots)
-        : { data: [] };
+        const parsedSlots: WaterlooOpenClassroomSlots = openClassroomSlots
+          ? JSON.parse(openClassroomSlots)
+          : { data: [] };
 
-      const buildingHours: Record<Weekdays, { earliest: string; latest: string }> = {
-        monday: { earliest: "23:59", latest: "00:00" },
-        tuesday: { earliest: "23:59", latest: "00:00" },
-        wednesday: { earliest: "23:59", latest: "00:00" },
-        thursday: { earliest: "23:59", latest: "00:00" },
-        friday: { earliest: "23:59", latest: "00:00" },
-        saturday: { earliest: "23:59", latest: "00:00" },
-        sunday: { earliest: "23:59", latest: "00:00" },
-      };
+        const buildingHours: Record<
+          Weekdays,
+          { earliest: string; latest: string }
+        > = {
+          monday: { earliest: "23:59", latest: "00:00" },
+          tuesday: { earliest: "23:59", latest: "00:00" },
+          wednesday: { earliest: "23:59", latest: "00:00" },
+          thursday: { earliest: "23:59", latest: "00:00" },
+          friday: { earliest: "23:59", latest: "00:00" },
+          saturday: { earliest: "23:59", latest: "00:00" },
+          sunday: { earliest: "23:59", latest: "00:00" },
+        };
 
-      for (const room of parsedSlots.data) {
-        for (const schedule of room.Schedule) {
-          const day = schedule.Weekday.toLowerCase() as Weekdays;
-          for (const slot of schedule.Slots) {
-            const start = slot.StartTime.substring(0, 5);
-            const end = slot.EndTime.substring(0, 5);
+        for (const room of parsedSlots.data) {
+          for (const schedule of room.Schedule) {
+            const day = schedule.Weekday.toLowerCase() as Weekdays;
+            for (const slot of schedule.Slots) {
+              const start = slot.StartTime.substring(0, 5);
+              const end = slot.EndTime.substring(0, 5);
 
-            if (start < buildingHours[day].earliest) {
-              buildingHours[day].earliest = start;
-            }
-            if (end > buildingHours[day].latest) {
-              buildingHours[day].latest = end;
+              if (start < buildingHours[day].earliest) {
+                buildingHours[day].earliest = start;
+              }
+              if (end > buildingHours[day].latest) {
+                buildingHours[day].latest = end;
+              }
             }
           }
         }
-      }
 
-      const hours: SpaceHours = {
-        monday:
-          buildingHours.monday.earliest === "23:59" ? [] : [{ open: buildingHours.monday.earliest, close: buildingHours.monday.latest }],
-        tuesday:
-          buildingHours.tuesday.earliest === "23:59" ? [] : [{ open: buildingHours.tuesday.earliest, close: buildingHours.tuesday.latest }],
-        wednesday:
-          buildingHours.wednesday.earliest === "23:59" ? [] : [{ open: buildingHours.wednesday.earliest, close: buildingHours.wednesday.latest }],
-        thursday:
-          buildingHours.thursday.earliest === "23:59" ? [] : [{ open: buildingHours.thursday.earliest, close: buildingHours.thursday.latest }],
-        friday:
-          buildingHours.friday.earliest === "23:59" ? [] : [{ open: buildingHours.friday.earliest, close: buildingHours.friday.latest }],
-        saturday:
-          buildingHours.saturday.earliest === "23:59" ? [] : [{ open: buildingHours.saturday.earliest, close: buildingHours.saturday.latest }],
-        sunday:
-          buildingHours.sunday.earliest === "23:59" ? [] : [{ open: buildingHours.sunday.earliest, close: buildingHours.sunday.latest }],
-      };
+        const hours: SpaceHours = {
+          monday:
+            buildingHours.monday.earliest === "23:59"
+              ? []
+              : [
+                  {
+                    open: buildingHours.monday.earliest,
+                    close: buildingHours.monday.latest,
+                  },
+                ],
+          tuesday:
+            buildingHours.tuesday.earliest === "23:59"
+              ? []
+              : [
+                  {
+                    open: buildingHours.tuesday.earliest,
+                    close: buildingHours.tuesday.latest,
+                  },
+                ],
+          wednesday:
+            buildingHours.wednesday.earliest === "23:59"
+              ? []
+              : [
+                  {
+                    open: buildingHours.wednesday.earliest,
+                    close: buildingHours.wednesday.latest,
+                  },
+                ],
+          thursday:
+            buildingHours.thursday.earliest === "23:59"
+              ? []
+              : [
+                  {
+                    open: buildingHours.thursday.earliest,
+                    close: buildingHours.thursday.latest,
+                  },
+                ],
+          friday:
+            buildingHours.friday.earliest === "23:59"
+              ? []
+              : [
+                  {
+                    open: buildingHours.friday.earliest,
+                    close: buildingHours.friday.latest,
+                  },
+                ],
+          saturday:
+            buildingHours.saturday.earliest === "23:59"
+              ? []
+              : [
+                  {
+                    open: buildingHours.saturday.earliest,
+                    close: buildingHours.saturday.latest,
+                  },
+                ],
+          sunday:
+            buildingHours.sunday.earliest === "23:59"
+              ? []
+              : [
+                  {
+                    open: buildingHours.sunday.earliest,
+                    close: buildingHours.sunday.latest,
+                  },
+                ],
+        };
 
-      return {
-        value: buildingName?.toLowerCase().replace(/\s+/g, "-") || "",
-        label: buildingName || "Unknown Building",
-        description: "No description available.",
-        location: { lat, lng },
-        hours,
-        metadata: {
-          amenities: ["WiFi", "Outlets"],
-          link: ""
-        },
-      };
-    });
+        return {
+          value: buildingName?.toLowerCase().replace(/\s+/g, "-") || "",
+          label: buildingName || "Unknown Building",
+          description: "No description available.",
+          location: { lat, lng },
+          hours,
+          metadata: {
+            amenities: ["WiFi", "Outlets"],
+            link: "",
+          },
+        };
+      },
+    );
 
     locations.push(...dynamicLocations);
   } catch (e) {

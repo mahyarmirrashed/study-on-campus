@@ -16,7 +16,10 @@ export const campuses: Campus[] = [
     label: "University of Toronto",
     location: { lat: 43.662, lng: -79.398 },
     spaces: universityOfTorontoLocations,
-    metadata: { timezone: "America/Toronto", display: { bearing: 45, zoom: 15.5 } },
+    metadata: {
+      timezone: "America/Toronto",
+      display: { bearing: 45, zoom: 15.5 },
+    },
   },
   {
     value: "university-of-waterloo",
