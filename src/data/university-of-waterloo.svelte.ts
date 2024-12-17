@@ -32,7 +32,7 @@ interface CORSProxy {
   contents: string;
 }
 
-export const locations: Space[] = [
+export const locations = $state<Space[]>([
   {
     value: "dana-porter-library",
     label: "Dana Porter Library",
@@ -73,7 +73,7 @@ export const locations: Space[] = [
       link: "https://maps.app.goo.gl/Z5CsTbspAfcd8XGS7",
     },
   },
-];
+]);
 
 (async function () {
   try {

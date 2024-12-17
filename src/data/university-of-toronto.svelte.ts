@@ -1,6 +1,6 @@
 import { type Space } from "$src/spaces.d";
 
-export const locations: Space[] = [
+export const locations = $state<Space[]>([
   {
     value: "john-p-robarts-research-library",
     label: "John P. Robarts Research Library",
@@ -539,4 +539,4 @@ export const locations: Space[] = [
       link: "https://maps.app.goo.gl/6fg5ikSrUb1zav2G9",
     },
   },
-];
+]);
