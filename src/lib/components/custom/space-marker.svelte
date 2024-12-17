@@ -18,7 +18,9 @@
   };
 </script>
 
-<div class="group flex h-16 w-16 cursor-pointer items-center justify-center">
+<div
+  class="animate-appear group flex h-16 w-16 cursor-pointer items-center justify-center"
+>
   <div class={cn(classes[status], "h-2 w-2 rounded-full shadow-3xl")}>
     &nbsp;
   </div>

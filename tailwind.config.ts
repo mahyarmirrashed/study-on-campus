@@ -74,9 +74,14 @@ const config: Config = {
           "0%,70%,100%": { opacity: "1" },
           "20%,50%": { opacity: "0" },
         },
+        appear: {
+          "0%": { opacity: "0" },
+          "100%": { opacity: "1" },
+        },
       },
       animation: {
         "caret-blink": "caret-blink 1.25s ease-out infinite",
+        appear: "appear 0.5s ease-in-out",
       },
       boxShadow: {
         "3xl": "0 0 10px 10px rgba(0, 0, 0, 0.4)",
