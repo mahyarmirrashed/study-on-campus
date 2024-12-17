@@ -21,6 +21,8 @@ dynamic user experience:
   management;
 - **ShadCN**: Provides pre-built, customizable UI components for a polished user
   interface;
+- **[AnyOrigin](https://api.allorigins.win)**: To bypass CORS errors in the
+  browser because the site has no backend (to save costs);
 - **MapLibre** and **MapTiler**: Used for rendering interactive maps and
   managing map data; and
 - **Tailwind CSS**: Enables rapid and consistent styling with a utility-first
