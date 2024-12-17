@@ -149,7 +149,7 @@ export const locations = $state<Space[]>([
           hours,
           metadata: {
             amenities: ["WiFi", "Outlets"],
-            link: "",
+            link: `https://google.com/maps?q=${lat},${lng}`,
           },
         };
       },
