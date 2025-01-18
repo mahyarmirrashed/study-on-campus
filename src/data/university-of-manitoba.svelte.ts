@@ -116,7 +116,7 @@ export const locations = $state<Space[]>([
     value: "jim-peebles-science-and-technology-library",
     label: "Jim Peebles Science and Technology Library",
     description:
-      "The Jim Peebles Science and Technology Library serves the research, study, and teaching requirements of the Faculties of Science, Engineering, Agricultural and Food Sciences, and Environment, Earth, and Resources.",
+      "The Jim Peebles Science and Technology Library serves the research, study, and teaching requirements of the Faculties of Science, Engineering, Agricultural and Food Sciences, and Environment, Earth, and Resources. Currently closed for construction (2025).",
     location: { lat: 49.81121151579056, lng: -97.13336330797407 },
     hours: {
       monday: [],
