@@ -33,6 +33,18 @@ export const locations = $state<Space[]>([
     },
   },
   {
+    value: "asper-school-of-business",
+    label: "Drake Center, Asper School of Business",
+    description:
+      "The Asper School of Business has a series of single-person desks as well as small multi-person desks on the second floor (300 level) of the Drake Center. The main floor (200 level) has couches for relaxing. Vending Machines can be found in the basement (100 level). Computers are availible to Asper School of Business students only. The bathrooms are really nice too!",
+    location: { lat: 49.80795653302958, lng: -97.13034953668762 },
+    alwaysOpen: true,
+    metadata: {
+      amenities: ["WiFi", "Vending Machines", "Water Fountains"],
+      link: "https://maps.app.goo.gl/6nWZpDg5Pq1Bhh9v7"
+    },
+  },
+  {
     value: "e-k-williams-law-library",
     label: "E. K. Williams Law Library",
     description:
