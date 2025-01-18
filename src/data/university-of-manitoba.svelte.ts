@@ -132,4 +132,23 @@ export const locations = $state<Space[]>([
       link: "https://maps.app.goo.gl/48NVXVD6kGeSoEue9",
     },
   },
+  {
+    value: "Parker-Building-Chemistry",
+    label: "Parker-Building-Chemistry",
+    description: " Chemistry building at the University of Manitoba ",
+    location: {lat: 49.81134, lng: -97.13457},
+    hours: {
+      Monday: [{open: "08:30", close:"20:00"}],
+      Tuesday: [{open: "08:30", close:"20:00"}],
+      Wednesday: [{open: "08:30", close:"20:00"}],
+      Thursday: [{open: "08:30", close:"20:00"}],
+      Friday: [{open: "08:30", close:"20:00"}],
+      Saturday: [],
+      Sunday: [],
+    },
+    metadata: {
+      amenities: ["Wifi", "Outlets"],
+      link: "https://maps.app.goo.gl/hon4c2nt4RZeGQDFA"
+    }
+  }
 ]);
