@@ -132,4 +132,23 @@ export const locations = $state<Space[]>([
       link: "https://maps.app.goo.gl/48NVXVD6kGeSoEue9",
     },
   },
+  {
+    value: "armes-science-lounge",
+    label: "Armes Science Lounge", 
+    description: "The Armes Science Lounge is a lounge for Science Students and students alike to gather around and learn in a joyful environment. ",
+    location: {lat:49.81091937683453, lng: -97.13384884794381},
+    hours: {
+      monday: [],
+      tuesday: [],
+      wednesday: [],
+      thursday: [],
+      friday: [],
+      saturday: [],
+      sunday: [],
+    },
+    metadata: {
+      amenities: ["Starbucks", "WiFi", "Outlets", "Printing"],
+      link: "https://maps.app.goo.gl/KWAehKXXVcTLMT1YA",
+    },
+  },
 ]);
